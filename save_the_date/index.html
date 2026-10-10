@@ -56,6 +56,16 @@
     text-wrap:balance;
   }
 
+  .tagline{
+    margin:12px 0 0;
+    font-size:.72rem;
+    letter-spacing:.3em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+  }
+  .tagline::before{content:"\2767\00a0\00a0"; letter-spacing:0}
+  .tagline::after{content:"\00a0\00a0\2767"; letter-spacing:0}
+
   .dateline{
     display:flex; justify-content:center; flex-wrap:wrap; column-gap:12px; row-gap:2px;
     border-bottom:1px solid var(--rule);
@@ -81,6 +91,21 @@
     line-height:1.08;
     text-transform:uppercase;
     letter-spacing:.02em;
+    text-wrap:balance;
+  }
+  .byline{
+    margin:16px 0 0;
+    font-size:.7rem;
+    letter-spacing:.26em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+  }
+  .deck{
+    margin:10px auto 0;
+    max-width:34rem;
+    font-style:italic;
+    font-size:clamp(.98rem,2.2vw,1.12rem);
+    line-height:1.5;
     text-wrap:balance;
   }
 
@@ -175,6 +200,14 @@
     color:var(--ink);
   }
 
+  .colophon{
+    margin:clamp(20px,4vw,30px) 0 0;
+    font-size:.7rem;
+    letter-spacing:.3em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+  }
+
   @media (max-width:520px){
     .dates .grid{grid-template-columns:1fr; row-gap:20px}
     .dates .event + .event{border-left:0; border-top:1px solid var(--rule-faint); padding-top:20px}
@@ -188,6 +221,7 @@
 
   <header class="masthead">
     <h1>The VAddin Times</h1>
+    <p class="tagline">All the love that&rsquo;s fit to print</p>
   </header>
 
   <div class="dateline">
@@ -197,6 +231,8 @@
   <section class="banner">
     <p class="eyebrow">Save the Date</p>
     <h2>Vrudhi &amp; Achal to&nbsp;Wed</h2>
+    <p class="byline">From the correspondent of the Shah family</p>
+    <p class="deck">A lifetime subscription has now been mutually agreed upon.</p>
   </section>
 
   <figure style="margin:0">
@@ -221,6 +257,8 @@
     </dl>
     <p class="venue">Venue<strong>Club O7, Ahmedabad</strong></p>
   </section>
+
+  <footer class="colophon">No. 1 of a lifetime edition</footer>
 
 </div>
 </body>
