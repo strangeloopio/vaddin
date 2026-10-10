@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="description" content="Vrudhi &amp; Achal — Save the Date. Pre-wedding 24 February 2027, wedding 25 February 2027, Club O7, Ahmedabad.">
-<meta name="theme-color" content="#ffffff">
+<meta name="theme-color" content="#262219">
 <meta property="og:title" content="The VAddin Times — Vrudhi &amp; Achal, Save the Date">
 <meta property="og:description" content="Pre-wedding 24 February 2027 · Wedding 25 February 2027 · Club O7, Ahmedabad">
 <meta property="og:image" content="https://vadd.in/save_the_date/photo.jpg">
@@ -19,11 +19,14 @@
   /* Layout concept: black-and-white broadsheet — centred masthead and headline, then three
      rule-divided columns: announcement | photograph & dates | venue desk. Single-theme by design. */
   :root{
-    --paper:#ffffff;
-    --ink:#111111;
-    --ink-soft:#555550;
-    --rule:#111111;
-    --rule-faint:#c9c9c4;
+    --desk:#262219;          /* the table the paper lies on */
+    --paper:#f4eedb;         /* aged newsprint */
+    --paper-deep:#ece4cc;    /* boxes & panels */
+    --ink:#211d15;           /* letterpress black */
+    --ink-soft:#5a5340;      /* bylines, captions */
+    --rule:#211d15;
+    --rule-faint:#b7ac8d;
+    --accent:#8e2420;        /* letterpress red */
     --display:'Playfair Display', Georgia, 'Times New Roman', serif;
     --body:'Playfair Display', Georgia, 'Times New Roman', serif;
     --masthead:'Playfair Display', Georgia, 'Times New Roman', serif;
@@ -47,17 +50,29 @@
   html,body{margin:0}
   html{-webkit-text-size-adjust:100%; text-size-adjust:100%}
   body{
-    background:var(--paper);
+    background:var(--desk);
     color:var(--ink);
     font-family:var(--body);
-    padding-block:clamp(24px,5vw,56px);
+    padding-block:clamp(16px,3vw,48px);
     padding-inline:16px;
     -webkit-font-smoothing:antialiased;
   }
   .sheet{
-    max-width:1040px;
+    position:relative;
+    max-width:1060px;
     margin-inline:auto;
     text-align:center;
+    background:var(--paper);
+    padding:clamp(18px,4vw,52px);
+    box-shadow:0 1px 2px rgba(0,0,0,.4), 0 18px 48px rgba(0,0,0,.55);
+  }
+  .sheet::after{
+    content:"";
+    position:absolute; inset:0;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    opacity:.07;
+    mix-blend-mode:multiply;
+    pointer-events:none;
   }
 
   /* Indic scripts dislike wide tracking — tighten it when those languages are active */
@@ -128,6 +143,7 @@
     letter-spacing:.02em;
     text-wrap:balance;
   }
+  .masthead h1 .init{color:var(--accent)}
   .tagline{
     margin:12px 0 0;
     font-size:.72rem;
@@ -146,7 +162,7 @@
     letter-spacing:.2em;
     text-transform:uppercase;
   }
-  .dateline .sep{letter-spacing:0; color:var(--ink-soft)}
+  .dateline .sep{letter-spacing:0; color:var(--accent)}
 
   .banner{padding-block:clamp(26px,5vw,40px) clamp(20px,4vw,30px)}
   .eyebrow{
@@ -154,7 +170,7 @@
     font-size:.8rem;
     letter-spacing:.44em;
     text-transform:uppercase;
-    color:var(--ink-soft);
+    color:var(--accent);
   }
   .banner h2{
     margin:0;
@@ -202,7 +218,7 @@
     font-size:.68rem;
     letter-spacing:.26em;
     text-transform:uppercase;
-    color:var(--ink-soft);
+    color:var(--accent);
   }
   .article h3{
     margin:0;
@@ -236,6 +252,7 @@
     float:left;
     line-height:.84;
     padding:.05em .12em 0 0;
+    color:var(--accent);
   }
 
   /* ---------- photograph plate ---------- */
@@ -244,6 +261,7 @@
     padding:8px;
     max-width:440px;
     margin-inline:auto;
+    background:var(--paper-deep);
   }
   .plate .frame{
     position:relative;
@@ -262,7 +280,6 @@
     height:100%;
     object-fit:cover;
     opacity:0;
-    filter:grayscale(1) contrast(1.05);
   }
   .plate .frame.loaded{border-color:transparent; padding:0}
   .plate .frame.loaded img{opacity:1}
@@ -285,9 +302,9 @@
   /* ---------- order of festivities ---------- */
   .dates{
     margin-top:clamp(16px,3vw,22px);
-    border-top:3px double var(--rule);
-    border-bottom:3px double var(--rule);
-    padding-block:clamp(18px,3.5vw,24px);
+    border:3px double var(--rule);
+    background:var(--paper-deep);
+    padding:clamp(18px,3.5vw,24px) 12px;
   }
   .dates .grid{
     display:grid;
@@ -300,7 +317,8 @@
     font-size:.72rem;
     letter-spacing:.34em;
     text-transform:uppercase;
-    color:var(--ink-soft);
+    color:var(--accent);
+    font-weight:700;
   }
   .dates dd{
     margin:8px 0 0;
@@ -368,7 +386,7 @@
     text-transform:uppercase;
     line-height:1.9;
   }
-  .panel.telegram .stop{font-weight:700}
+  .panel.telegram .stop{font-weight:700; color:var(--accent)}
 
   /* ---------- classifieds ---------- */
   .classifieds{
@@ -404,7 +422,7 @@
     text-transform:uppercase;
     font-size:.7rem;
     margin-bottom:4px;
-    color:var(--ink-soft);
+    color:var(--accent);
   }
 
   .colophon{
@@ -416,7 +434,7 @@
     text-transform:uppercase;
     color:var(--ink-soft);
   }
-  .colophon .sep{letter-spacing:0; color:var(--ink)}
+  .colophon .sep{letter-spacing:0; color:var(--accent)}
 
   /* ---------- phone ---------- */
   @media (max-width:760px){
@@ -466,7 +484,7 @@
   </div>
 
   <header class="masthead">
-    <h1 data-i18n="masthead">The VAddin Times</h1>
+    <h1 data-i18n="masthead">The <span class="init">V</span><span class="init">A</span>ddin Times</h1>
     <p class="tagline" data-i18n="tagline">All the love that&rsquo;s fit to print</p>
   </header>
 
@@ -570,7 +588,7 @@
 <script>
 const I18N = {
   en: {
-    masthead: 'The VAddin Times',
+    masthead: 'The <span class="init">V</span><span class="init">A</span>ddin Times',
     col1: 'The VAddin Times',
     inv: '॥ Shree Mahaviray Namaha ॥',
     ears1: 'Vol. I — No. 1',
@@ -611,7 +629,7 @@ const I18N = {
     col3: 'No. 1 of a lifetime edition'
   },
   hi: {
-    masthead: 'द वाडिन टाइम्स',
+    masthead: 'द <span class="init">वा</span>डिन टाइम्स',
     col1: 'द वाडिन टाइम्स',
     inv: '॥ श्री महावीराय नमः ॥',
     ears1: 'वर्ष 1 — अंक 1',
@@ -652,7 +670,7 @@ const I18N = {
     col3: 'जीवनभर के संस्करण का अंक 1'
   },
   gu: {
-    masthead: 'ધ વાડિન ટાઇમ્સ',
+    masthead: 'ધ <span class="init">વા</span>ડિન ટાઇમ્સ',
     col1: 'ધ વાડિન ટાઇમ્સ',
     inv: '॥ શ્રી મહાવીરાય નમઃ ॥',
     ears1: 'વર્ષ 1 — અંક 1',
@@ -693,7 +711,7 @@ const I18N = {
     col3: 'આજીવન આવૃત્તિનો અંક 1'
   },
   mr: {
-    masthead: 'द वाडिन टाइम्स',
+    masthead: 'द <span class="init">वा</span>डिन टाइम्स',
     col1: 'द वाडिन टाइम्स',
     inv: '॥ श्री महावीराय नमः ॥',
     ears1: 'वर्ष 1 — अंक 1',
