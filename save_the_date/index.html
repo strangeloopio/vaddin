@@ -3,7 +3,17 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Vrudhi &amp; Achal — Save the Date. Pre-wedding 24 February 2027, wedding 25 February 2027, Club O7, Ahmedabad.">
+<meta name="theme-color" content="#ffffff">
+<meta property="og:title" content="The VAddin Times — Vrudhi &amp; Achal, Save the Date">
+<meta property="og:description" content="Pre-wedding 24 February 2027 · Wedding 25 February 2027 · Club O7, Ahmedabad">
+<meta property="og:image" content="https://strangeloopio.github.io/vaddin/save_the_date/photo.jpg">
+<meta property="og:url" content="https://strangeloopio.github.io/vaddin/save_the_date/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
 <title>The VAddin Times</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Tiro+Devanagari+Hindi:ital@0;1&family=Tiro+Devanagari+Marathi:ital@0;1&family=Noto+Serif+Gujarati:wght@400;700;900&display=swap">
 <style>
   /* Layout concept: black-and-white broadsheet — centred masthead and headline, then three
@@ -35,6 +45,7 @@
   }
   *{box-sizing:border-box}
   html,body{margin:0}
+  html{-webkit-text-size-adjust:100%; text-size-adjust:100%}
   body{
     background:var(--paper);
     color:var(--ink);
@@ -409,8 +420,9 @@
 
   /* ---------- phone ---------- */
   @media (max-width:760px){
-    .lang-switch{position:static; transform:none; justify-content:center; margin-top:10px}
-    .topbar{margin-bottom:10px}
+    .lang-switch{position:static; transform:none; justify-content:center; margin-top:8px}
+    .lang-switch button{padding:8px 10px; font-size:.84rem}
+    .topbar{margin-bottom:8px}
   }
   @media (max-width:880px){
     .page{
@@ -489,7 +501,7 @@
       <figure style="margin:0">
         <div class="plate">
           <div class="frame">
-            <img alt="Vrudhi &amp; Achal" onload="this.parentElement.classList.add('loaded')" onerror="this.style.display='none'" src="photo.jpg">
+            <img alt="Vrudhi &amp; Achal" decoding="async" onload="this.parentElement.classList.add('loaded')" onerror="this.style.display='none'" src="photo.jpg">
             <span class="label" data-i18n="photoLabel">Photograph of<br>the Couple</span>
           </div>
         </div>
