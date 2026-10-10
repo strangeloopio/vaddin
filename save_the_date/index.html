@@ -41,6 +41,15 @@
     margin:0 0 14px;
   }
 
+  .ears{
+    display:flex; justify-content:space-between; align-items:baseline; gap:12px;
+    font-size:.7rem;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    padding-bottom:7px;
+  }
+  .ears .mid{color:var(--ink-soft)}
+
   .masthead{
     border-top:1px solid var(--rule);
     border-bottom:3px double var(--rule);
@@ -357,6 +366,7 @@
     .article p{text-align:left; hyphens:none}
   }
   @media (max-width:520px){
+    .ears{flex-direction:column; align-items:center; gap:3px}
     .ads{grid-template-columns:1fr; gap:14px}
     .ads div + div{border-left:0; border-top:1px solid var(--rule-faint); padding-top:14px}
   }
@@ -366,6 +376,12 @@
 <div class="sheet">
 
   <p class="invocation">&#2405; Shree Mahaviray Namah &#2405;</p>
+
+  <div class="ears">
+    <span>Vol. I &mdash; No. 1</span>
+    <span class="mid">Two Hearts &middot; One Headline</span>
+    <span>Rs: Priceless</span>
+  </div>
 
   <header class="masthead">
     <h1>The VAddin Times</h1>
