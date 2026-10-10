@@ -334,11 +334,14 @@
 
   .colophon{
     margin:clamp(20px,4vw,30px) 0 0;
+    display:flex; justify-content:center; align-items:baseline; flex-wrap:wrap;
+    column-gap:14px; row-gap:4px;
     font-size:.7rem;
     letter-spacing:.3em;
     text-transform:uppercase;
     color:var(--ink-soft);
   }
+  .colophon .sep{letter-spacing:0; color:var(--ink)}
 
   /* ---------- phone ---------- */
   @media (max-width:880px){
@@ -453,7 +456,13 @@
     </div>
   </section>
 
-  <footer class="colophon">No. 1 of a lifetime edition</footer>
+  <footer class="colophon">
+    <span>The VAddin Times</span>
+    <span class="sep">&#10087;</span>
+    <span>Printed with love</span>
+    <span class="sep">&#10087;</span>
+    <span>No. 1 of a lifetime edition</span>
+  </footer>
 
 </div>
 </body>
