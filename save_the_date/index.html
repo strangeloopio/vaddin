@@ -31,20 +31,24 @@
     --body:'Playfair Display', Georgia, 'Times New Roman', serif;
     --masthead:'Playfair Display', Georgia, 'Times New Roman', serif;
   }
+  /* Indic faces render smaller than Playfair at the same nominal size — scale the rem base up */
   :root[data-lang="hi"]{
     --display:'Tiro Devanagari Hindi', Georgia, serif;
     --body:'Tiro Devanagari Hindi', Georgia, serif;
     --masthead:'Tiro Devanagari Hindi', Georgia, serif;
+    font-size:18px;
   }
   :root[data-lang="mr"]{
     --display:'Tiro Devanagari Marathi', Georgia, serif;
     --body:'Tiro Devanagari Marathi', Georgia, serif;
     --masthead:'Tiro Devanagari Marathi', Georgia, serif;
+    font-size:18px;
   }
   :root[data-lang="gu"]{
     --display:'Noto Serif Gujarati', Georgia, serif;
     --body:'Noto Serif Gujarati', Georgia, serif;
     --masthead:'Noto Serif Gujarati', Georgia, serif;
+    font-size:17.5px;
   }
   *{box-sizing:border-box}
   html,body{margin:0}
