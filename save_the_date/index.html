@@ -51,10 +51,16 @@
     letter-spacing:.04em;
   }
 
+  .topbar{
+    position:relative;
+    margin-bottom:14px;
+  }
   .lang-switch{
+    position:absolute;
+    right:0; top:50%;
+    transform:translateY(-50%);
     display:flex; justify-content:flex-end; align-items:baseline; flex-wrap:wrap;
     gap:4px 6px;
-    margin-bottom:14px;
   }
   .lang-switch button{
     background:none;
@@ -82,7 +88,7 @@
     font-size:.82rem;
     letter-spacing:.3em;
     text-transform:uppercase;
-    margin:0 0 14px;
+    margin:0;
   }
 
   .ears{
@@ -399,6 +405,10 @@
   .colophon .sep{letter-spacing:0; color:var(--ink)}
 
   /* ---------- phone ---------- */
+  @media (max-width:760px){
+    .lang-switch{position:static; transform:none; justify-content:center; margin-top:10px}
+    .topbar{margin-bottom:10px}
+  }
   @media (max-width:880px){
     .page{
       grid-template-columns:1fr;
@@ -421,17 +431,18 @@
 <body>
 <div class="sheet">
 
-  <nav class="lang-switch" aria-label="Language">
-    <button type="button" id="lang-en" class="en active" data-set="en" aria-pressed="true">English</button>
-    <span class="dot">&middot;</span>
-    <button type="button" id="lang-hi" class="hi" data-set="hi" aria-pressed="false">&#2361;&#2367;&#2344;&#2381;&#2342;&#2368;</button>
-    <span class="dot">&middot;</span>
-    <button type="button" id="lang-gu" class="gu" data-set="gu" aria-pressed="false">&#2711;&#2753;&#2716;&#2736;&#2750;&#2724;&#2752;</button>
-    <span class="dot">&middot;</span>
-    <button type="button" id="lang-mr" class="mr" data-set="mr" aria-pressed="false">&#2350;&#2352;&#2366;&#2336;&#2368;</button>
-  </nav>
-
-  <p class="invocation" data-i18n="inv">&#2405; Shree Mahaviray Namaha &#2405;</p>
+  <div class="topbar">
+    <p class="invocation" data-i18n="inv">&#2405; Shree Mahaviray Namaha &#2405;</p>
+    <nav class="lang-switch" aria-label="Language">
+      <button type="button" id="lang-en" class="en active" data-set="en" aria-pressed="true">English</button>
+      <span class="dot">&middot;</span>
+      <button type="button" id="lang-hi" class="hi" data-set="hi" aria-pressed="false">&#2361;&#2367;&#2344;&#2381;&#2342;&#2368;</button>
+      <span class="dot">&middot;</span>
+      <button type="button" id="lang-gu" class="gu" data-set="gu" aria-pressed="false">&#2711;&#2753;&#2716;&#2736;&#2750;&#2724;&#2752;</button>
+      <span class="dot">&middot;</span>
+      <button type="button" id="lang-mr" class="mr" data-set="mr" aria-pressed="false">&#2350;&#2352;&#2366;&#2336;&#2368;</button>
+    </nav>
+  </div>
 
   <div class="ears">
     <span data-i18n="ears1">Vol. I &mdash; No. 1</span>
