@@ -200,6 +200,41 @@
     color:var(--ink);
   }
 
+  .classifieds{
+    margin-top:clamp(24px,4.5vw,34px);
+  }
+  .classifieds h3{
+    margin:0 0 16px;
+    font-family:var(--display);
+    font-weight:700;
+    font-size:.82rem;
+    letter-spacing:.34em;
+    text-transform:uppercase;
+  }
+  .ads{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:0 22px;
+    text-align:center;
+  }
+  .ads div{
+    font-size:.88rem;
+    line-height:1.5;
+    padding-inline:4px;
+    min-width:0;
+  }
+  .ads div + div{border-left:1px solid var(--rule-faint)}
+  .ads b{
+    display:block;
+    font-family:var(--display);
+    font-weight:700;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    font-size:.7rem;
+    margin-bottom:4px;
+    color:var(--ink-soft);
+  }
+
   .colophon{
     margin:clamp(20px,4vw,30px) 0 0;
     font-size:.7rem;
@@ -211,6 +246,8 @@
   @media (max-width:520px){
     .dates .grid{grid-template-columns:1fr; row-gap:20px}
     .dates .event + .event{border-left:0; border-top:1px solid var(--rule-faint); padding-top:20px}
+    .ads{grid-template-columns:1fr; gap:14px}
+    .ads div + div{border-left:0; border-top:1px solid var(--rule-faint); padding-top:14px}
   }
 </style>
 </head>
@@ -256,6 +293,15 @@
       </div>
     </dl>
     <p class="venue">Venue<strong>Club O7, Ahmedabad</strong></p>
+  </section>
+
+  <section class="classifieds">
+    <h3>Matrimonial Classifieds</h3>
+    <div class="ads">
+      <div><b>Found</b>One groom, completely smitten. If lost, return to Vrudhi.</div>
+      <div><b>Wanted</b>Your presence for the blessings and fun. Apply in person, 24&ndash;25 February 2027.</div>
+      <div><b>For Sale</b>Excuses for missing this wedding. Condition: unused. Offers: not accepted.</div>
+    </div>
   </section>
 
   <footer class="colophon">No. 1 of a lifetime edition</footer>
