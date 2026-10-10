@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>The VAddin Times</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Tiro+Devanagari+Hindi:ital@0;1&family=Tiro+Devanagari+Marathi:ital@0;1&family=Noto+Serif+Gujarati:wght@400;700;900&display=swap">
 <style>
   /* Layout concept: black-and-white broadsheet — centred masthead and headline, then three
      rule-divided columns: announcement | photograph & dates | venue desk. Single-theme by design. */
@@ -17,6 +17,18 @@
     --display:'Playfair Display', Georgia, 'Times New Roman', serif;
     --body:'Playfair Display', Georgia, 'Times New Roman', serif;
     --masthead:'Playfair Display', Georgia, 'Times New Roman', serif;
+  }
+  :root[data-lang="hi"]{
+    --display:'Tiro Devanagari Hindi', Georgia, serif;
+    --body:'Tiro Devanagari Hindi', Georgia, serif;
+  }
+  :root[data-lang="mr"]{
+    --display:'Tiro Devanagari Marathi', Georgia, serif;
+    --body:'Tiro Devanagari Marathi', Georgia, serif;
+  }
+  :root[data-lang="gu"]{
+    --display:'Noto Serif Gujarati', Georgia, serif;
+    --body:'Noto Serif Gujarati', Georgia, serif;
   }
   *{box-sizing:border-box}
   html,body{margin:0}
@@ -33,6 +45,38 @@
     margin-inline:auto;
     text-align:center;
   }
+
+  /* Indic scripts dislike wide tracking — tighten it when those languages are active */
+  :root:is([data-lang="hi"],[data-lang="gu"],[data-lang="mr"]) :is(.invocation,.ears,.tagline,.dateline,.eyebrow,.byline,.article .kicker,.dates dt,.venue,.venue strong,.panel h3,.panel.telegram p,.classifieds h3,.ads b,.colophon,.plate .label){
+    letter-spacing:.04em;
+  }
+
+  .lang-switch{
+    display:flex; justify-content:center; align-items:baseline; flex-wrap:wrap;
+    gap:4px 6px;
+    margin-bottom:14px;
+  }
+  .lang-switch button{
+    background:none;
+    border:0;
+    border-bottom:1px solid transparent;
+    padding:2px 8px 3px;
+    cursor:pointer;
+    color:var(--ink-soft);
+    font-size:.8rem;
+    letter-spacing:.06em;
+  }
+  .lang-switch button.active{
+    color:var(--ink);
+    font-weight:700;
+    border-bottom-color:var(--ink);
+  }
+  .lang-switch button:focus-visible{outline:2px solid var(--ink); outline-offset:2px}
+  .lang-switch .en{font-family:'Playfair Display', Georgia, serif}
+  .lang-switch .hi{font-family:'Tiro Devanagari Hindi', serif}
+  .lang-switch .gu{font-family:'Noto Serif Gujarati', serif}
+  .lang-switch .mr{font-family:'Tiro Devanagari Marathi', serif}
+  .lang-switch .dot{color:var(--rule-faint)}
 
   .invocation{
     font-size:.82rem;
@@ -97,7 +141,7 @@
     font-family:var(--display);
     font-weight:900;
     font-size:clamp(1.9rem,6.4vw,3.6rem);
-    line-height:1.08;
+    line-height:1.14;
     text-transform:uppercase;
     letter-spacing:.02em;
     text-wrap:balance;
@@ -114,7 +158,7 @@
     max-width:44rem;
     font-style:italic;
     font-size:clamp(.98rem,2.2vw,1.12rem);
-    line-height:1.5;
+    line-height:1.55;
     text-wrap:balance;
   }
 
@@ -145,7 +189,7 @@
     font-family:var(--display);
     font-weight:700;
     font-size:1.18rem;
-    line-height:1.3;
+    line-height:1.35;
     text-transform:uppercase;
     letter-spacing:.03em;
     text-wrap:balance;
@@ -160,7 +204,7 @@
   .article p{
     margin:0 0 .9em;
     font-size:.94rem;
-    line-height:1.62;
+    line-height:1.66;
     text-align:justify;
     hyphens:auto;
   }
@@ -243,7 +287,7 @@
     font-family:var(--display);
     font-weight:700;
     font-size:clamp(1.02rem,2.6vw,1.2rem);
-    line-height:1.35;
+    line-height:1.4;
   }
   .dates dd .day{
     display:block;
@@ -296,7 +340,7 @@
     letter-spacing:.3em;
     text-transform:uppercase;
   }
-  .panel p{margin:0; font-size:.92rem; line-height:1.55; font-style:italic}
+  .panel p{margin:0; font-size:.92rem; line-height:1.6; font-style:italic}
   .panel.telegram p{
     font-style:normal;
     font-size:.78rem;
@@ -327,7 +371,7 @@
   }
   .ads div{
     font-size:.88rem;
-    line-height:1.5;
+    line-height:1.55;
     padding-inline:4px;
     min-width:0;
   }
@@ -377,43 +421,53 @@
 <body>
 <div class="sheet">
 
-  <p class="invocation">&#2405; Shree Mahaviray Namah &#2405;</p>
+  <nav class="lang-switch" aria-label="Language">
+    <button type="button" id="lang-en" class="en active" data-set="en" aria-pressed="true">English</button>
+    <span class="dot">&middot;</span>
+    <button type="button" id="lang-hi" class="hi" data-set="hi" aria-pressed="false">&#2361;&#2367;&#2344;&#2381;&#2342;&#2368;</button>
+    <span class="dot">&middot;</span>
+    <button type="button" id="lang-gu" class="gu" data-set="gu" aria-pressed="false">&#2711;&#2753;&#2716;&#2736;&#2750;&#2724;&#2752;</button>
+    <span class="dot">&middot;</span>
+    <button type="button" id="lang-mr" class="mr" data-set="mr" aria-pressed="false">&#2350;&#2352;&#2366;&#2336;&#2368;</button>
+  </nav>
+
+  <p class="invocation" data-i18n="inv">&#2405; Shree Mahaviray Namah &#2405;</p>
 
   <div class="ears">
-    <span>Vol. I &mdash; No. 1</span>
-    <span class="mid">Two Hearts &middot; One Headline</span>
-    <span>Rs: Priceless</span>
+    <span data-i18n="ears1">Vol. I &mdash; No. 1</span>
+    <span class="mid" data-i18n="ears2">Two Hearts &middot; One Headline</span>
+    <span data-i18n="ears3">Rs: Priceless</span>
   </div>
 
   <header class="masthead">
     <h1>The VAddin Times</h1>
-    <p class="tagline">All the love that&rsquo;s fit to print</p>
+    <p class="tagline" data-i18n="tagline">All the love that&rsquo;s fit to print</p>
   </header>
 
   <div class="dateline">
     <span class="sep">&#10022;</span>
-    <span>Sunday, 11 October 2026</span>
+    <span data-i18n="dlDate">Sunday, 11 October 2026</span>
     <span class="sep">&#10022;</span>
-    <span>Special Wedding Edition</span>
+    <span data-i18n="dlEd">Special Wedding Edition</span>
   </div>
 
   <section class="banner">
-    <p class="eyebrow">Save the Date</p>
-    <h2>Vrudhi &amp; Achal to&nbsp;Wed</h2>
-    <p class="byline">From the correspondent of the Shah family</p>
-    <p class="deck">Two hearts confirm a long-rumoured merger; celebrations ordered at Club O7 &mdash; guests are advised to prepare for unprecedented merriment.</p>
+    <p class="eyebrow" data-i18n="eyebrow">Save the Date</p>
+    <h2 data-i18n="headline">Vrudhi &amp; Achal to&nbsp;Wed</h2>
+    <p class="byline" data-i18n="byline">From the correspondent of the Shah family</p>
+    <p class="deck" data-i18n="deck">Two hearts confirm a long-rumoured merger; celebrations ordered at Club O7 &mdash; guests are advised to prepare for unprecedented merriment.</p>
   </section>
 
   <div class="page">
 
     <div class="area-left">
       <article class="article">
-        <p class="kicker">The Happy Announcement</p>
-        <h3>Families Overjoyed as Couple Sets the Date</h3>
+        <p class="kicker" data-i18n="a1Kicker">The Happy Announcement</p>
+        <h3 data-i18n="a1Head">Families Overjoyed as Couple Sets the Date</h3>
         <div class="rule"></div>
-        <p class="lede">It is with great joy that the families of Vrudhi and Achal announce the wedding of the bride and groom, to be solemnised on Thursday, the 25th of February, 2027, at Club O7, Ahmedabad.</p>
-        <p>Festivities open a day earlier, on Wednesday the 24th, when both families gather for the pre-wedding celebrations: an evening expected to feature music, dancing, and at least one aunty or uncle who insists they &ldquo;knew it all.&rdquo;</p>
-        <p>Reporters pressed the couple for comment. The bride smiled. The groom grinned. Sources close to both confirm that a lifetime subscription has now been mutually agreed upon.</p>
+        <p class="lede" data-i18n="a1P1">It is with great joy that the families of Vrudhi and Achal announce the wedding of the bride and groom, to be solemnised on Thursday, the 25th of February, 2027, at Club O7, Ahmedabad.</p>
+        <p data-i18n="a1P2">Festivities open a day earlier, on Wednesday the 24th, when both families gather for the pre-wedding celebrations: an evening expected to feature music, dancing, and at least one aunty or uncle who insists they &ldquo;knew it all.&rdquo;</p>
+        <p data-i18n="a1P3">Reporters pressed the couple for comment. The bride smiled. The groom grinned. Sources close to both confirm that a lifetime subscription has now been mutually agreed upon.</p>
       </article>
     </div>
 
@@ -422,10 +476,10 @@
         <div class="plate">
           <div class="frame">
             <img alt="Vrudhi &amp; Achal" onload="this.parentElement.classList.add('loaded')" onerror="this.style.display='none'" src="photo.jpg">
-            <span class="label">Photograph of<br>the Couple</span>
+            <span class="label" data-i18n="photoLabel">Photograph of<br>the Couple</span>
           </div>
         </div>
-        <figcaption class="caption">Vrudhi &amp; Achal &mdash; portrait awaited from the photographer, who promises it is well worth the wait.</figcaption>
+        <figcaption class="caption" data-i18n="caption">Vrudhi &amp; Achal &mdash; portrait awaited from the photographer, who promises it is well worth the wait.</figcaption>
       </figure>
     </div>
 
@@ -433,35 +487,35 @@
       <section class="dates">
         <dl class="grid" style="margin:0">
           <div class="event">
-            <dt>Pre-Wedding</dt>
-            <dd><span class="day">Wednesday</span>24 February 2027</dd>
+            <dt data-i18n="ev1Dt">Pre-Wedding</dt>
+            <dd data-i18n="ev1Dd"><span class="day">Wednesday</span>24 February 2027</dd>
           </div>
           <div class="event">
-            <dt>Wedding</dt>
-            <dd><span class="day">Thursday</span>25 February 2027</dd>
+            <dt data-i18n="ev2Dt">Wedding</dt>
+            <dd data-i18n="ev2Dd"><span class="day">Thursday</span>25 February 2027</dd>
           </div>
         </dl>
-        <p class="venue">Venue<strong>Club O7, Ahmedabad</strong></p>
+        <p class="venue" data-i18n="venue">Venue<strong>Club O7, Ahmedabad</strong></p>
       </section>
     </div>
 
     <div class="area-right">
       <article class="article">
-        <p class="kicker">Venue Desk</p>
-        <h3>Club O7 Braces for Two Days of Festivities</h3>
+        <p class="kicker" data-i18n="a2Kicker">Venue Desk</p>
+        <h3 data-i18n="a2Head">Club O7 Braces for Two Days of Festivities</h3>
         <div class="rule"></div>
-        <p>Preparations are well underway across the city. Florists report record orders, tailors are working by lamplight, and the dance floor at Club O7 is said to be undergoing structural reinforcement in anticipation of the baraat.</p>
-        <p>Guests are advised to rest their feet, press their finest attire, and keep both evenings entirely free of other engagements. Officials confirm that no excuses will be entertained.</p>
+        <p data-i18n="a2P1">Preparations are well underway across the city. Florists report record orders, tailors are working by lamplight, and the dance floor at Club O7 is said to be undergoing structural reinforcement in anticipation of the baraat.</p>
+        <p data-i18n="a2P2">Guests are advised to rest their feet, press their finest attire, and keep both evenings entirely free of other engagements. Officials confirm that no excuses will be entertained.</p>
       </article>
 
       <div class="panels">
         <section class="panel">
-          <h3>The Wedding Forecast</h3>
-          <p>Hearts: full. A one-hundred per cent chance of blessings, fun, music, laughter and happy tears. Outlook: forever.</p>
+          <h3 data-i18n="fcH">The Wedding Forecast</h3>
+          <p data-i18n="fcP">Hearts: full. A one-hundred per cent chance of blessings, fun, music, laughter and happy tears. Outlook: forever.</p>
         </section>
         <section class="panel telegram">
-          <h3>Telegram</h3>
-          <p>Save the dates <span class="stop">stop</span> formal invitation to follow <span class="stop">stop</span> bring your dancing shoes <span class="stop">stop</span></p>
+          <h3 data-i18n="tgH">Telegram</h3>
+          <p data-i18n="tgP">Save the dates <span class="stop">stop</span> formal invitation to follow <span class="stop">stop</span> bring your dancing shoes <span class="stop">stop</span></p>
         </section>
       </div>
     </div>
@@ -469,22 +523,207 @@
   </div>
 
   <section class="classifieds">
-    <h3>Matrimonial Classifieds</h3>
+    <h3 data-i18n="clH">Matrimonial Classifieds</h3>
     <div class="ads">
-      <div><b>Found</b>One groom, completely smitten. If lost, return to Vrudhi.</div>
-      <div><b>Wanted</b>Your presence for the blessings and fun. Apply in person, 24&ndash;25 February 2027.</div>
-      <div><b>For Sale</b>Excuses for missing this wedding. Condition: unused. Offers: not accepted.</div>
+      <div data-i18n="ad1"><b>Found</b>One groom, completely smitten. If lost, return to Vrudhi.</div>
+      <div data-i18n="ad2"><b>Wanted</b>Your presence for the blessings and fun. Apply in person, 24&ndash;25 February 2027.</div>
+      <div data-i18n="ad3"><b>For Sale</b>Excuses for missing this wedding. Condition: unused. Offers: not accepted.</div>
     </div>
   </section>
 
   <footer class="colophon">
     <span>The VAddin Times</span>
     <span class="sep">&#10087;</span>
-    <span>Printed with love</span>
+    <span data-i18n="col2">Printed with love</span>
     <span class="sep">&#10087;</span>
-    <span>No. 1 of a lifetime edition</span>
+    <span data-i18n="col3">No. 1 of a lifetime edition</span>
   </footer>
 
 </div>
+
+<script>
+const I18N = {
+  en: {
+    inv: '॥ Shree Mahaviray Namah ॥',
+    ears1: 'Vol. I — No. 1',
+    ears2: 'Two Hearts · One Headline',
+    ears3: 'Rs: Priceless',
+    tagline: 'All the love that’s fit to print',
+    dlDate: 'Sunday, 11 October 2026',
+    dlEd: 'Special Wedding Edition',
+    eyebrow: 'Save the Date',
+    headline: 'Vrudhi &amp; Achal to&nbsp;Wed',
+    byline: 'From the correspondent of the Shah family',
+    deck: 'Two hearts confirm a long-rumoured merger; celebrations ordered at Club O7 — guests are advised to prepare for unprecedented merriment.',
+    a1Kicker: 'The Happy Announcement',
+    a1Head: 'Families Overjoyed as Couple Sets the Date',
+    a1P1: 'It is with great joy that the families of Vrudhi and Achal announce the wedding of the bride and groom, to be solemnised on Thursday, the 25th of February, 2027, at Club O7, Ahmedabad.',
+    a1P2: 'Festivities open a day earlier, on Wednesday the 24th, when both families gather for the pre-wedding celebrations: an evening expected to feature music, dancing, and at least one aunty or uncle who insists they “knew it all.”',
+    a1P3: 'Reporters pressed the couple for comment. The bride smiled. The groom grinned. Sources close to both confirm that a lifetime subscription has now been mutually agreed upon.',
+    photoLabel: 'Photograph of<br>the Couple',
+    caption: 'Vrudhi &amp; Achal — portrait awaited from the photographer, who promises it is well worth the wait.',
+    ev1Dt: 'Pre-Wedding',
+    ev1Dd: '<span class="day">Wednesday</span>24 February 2027',
+    ev2Dt: 'Wedding',
+    ev2Dd: '<span class="day">Thursday</span>25 February 2027',
+    venue: 'Venue<strong>Club O7, Ahmedabad</strong>',
+    a2Kicker: 'Venue Desk',
+    a2Head: 'Club O7 Braces for Two Days of Festivities',
+    a2P1: 'Preparations are well underway across the city. Florists report record orders, tailors are working by lamplight, and the dance floor at Club O7 is said to be undergoing structural reinforcement in anticipation of the baraat.',
+    a2P2: 'Guests are advised to rest their feet, press their finest attire, and keep both evenings entirely free of other engagements. Officials confirm that no excuses will be entertained.',
+    fcH: 'The Wedding Forecast',
+    fcP: 'Hearts: full. A one-hundred per cent chance of blessings, fun, music, laughter and happy tears. Outlook: forever.',
+    tgH: 'Telegram',
+    tgP: 'Save the dates <span class="stop">stop</span> formal invitation to follow <span class="stop">stop</span> bring your dancing shoes <span class="stop">stop</span>',
+    clH: 'Matrimonial Classifieds',
+    ad1: '<b>Found</b>One groom, completely smitten. If lost, return to Vrudhi.',
+    ad2: '<b>Wanted</b>Your presence for the blessings and fun. Apply in person, 24–25 February 2027.',
+    ad3: '<b>For Sale</b>Excuses for missing this wedding. Condition: unused. Offers: not accepted.',
+    col2: 'Printed with love',
+    col3: 'No. 1 of a lifetime edition'
+  },
+  hi: {
+    inv: '॥ श्री महावीराय नमः ॥',
+    ears1: 'वर्ष 1 — अंक 1',
+    ears2: 'दो दिल · एक सुर्ख़ी',
+    ears3: 'मूल्य: अनमोल',
+    tagline: 'छापने लायक सारा प्यार',
+    dlDate: 'रविवार, 11 अक्टूबर 2026',
+    dlEd: 'विशेष विवाह संस्करण',
+    eyebrow: 'तारीख़ नोट कर लीजिए',
+    headline: 'वृद्धि और अचल विवाह बंधन में',
+    byline: 'शाह परिवार के संवाददाता द्वारा',
+    deck: 'दो दिलों ने बहुचर्चित मिलन की पुष्टि की; क्लब O7 में समारोह के आदेश — मेहमानों से अभूतपूर्व आनंद के लिए तैयार रहने का अनुरोध।',
+    a1Kicker: 'शुभ घोषणा',
+    a1Head: 'तारीख़ तय, दोनों परिवारों में हर्ष की लहर',
+    a1P1: 'अत्यंत हर्ष के साथ वृद्धि और अचल के परिवार वर-वधू के विवाह की घोषणा करते हैं, जो गुरुवार, 25 फ़रवरी 2027 को क्लब O7, अहमदाबाद में संपन्न होगा।',
+    a1P2: 'उत्सव एक दिन पहले, बुधवार 24 तारीख़ से शुरू होंगे, जब दोनों परिवार प्री-वेडिंग समारोह के लिए जुटेंगे: एक ऐसी शाम जिसमें संगीत, नृत्य और कम से कम एक ऐसे आंटी या अंकल ज़रूर होंगे जो कहेंगे कि उन्हें तो “पहले से ही सब पता था।”',
+    a1P3: 'संवाददाताओं ने जोड़े से टिप्पणी मांगी। दुल्हन मुस्कुरा दीं। दूल्हे की हँसी छूट गई। दोनों के क़रीबी सूत्रों की पुष्टि: आजीवन सदस्यता पर आपसी सहमति बन चुकी है।',
+    photoLabel: 'युगल का<br>छायाचित्र',
+    caption: 'वृद्धि और अचल — छायाकार से तस्वीर की प्रतीक्षा है, उनका वादा है कि इंतज़ार बेकार नहीं जाएगा।',
+    ev1Dt: 'प्री-वेडिंग',
+    ev1Dd: '<span class="day">बुधवार</span>24 फ़रवरी 2027',
+    ev2Dt: 'विवाह',
+    ev2Dd: '<span class="day">गुरुवार</span>25 फ़रवरी 2027',
+    venue: 'स्थान<strong>क्लब O7, अहमदाबाद</strong>',
+    a2Kicker: 'स्थल समाचार',
+    a2Head: 'दो दिन के उत्सव के लिए क्लब O7 तैयार',
+    a2P1: 'शहर भर में तैयारियाँ ज़ोरों पर हैं। फूलवालों के पास रिकॉर्ड ऑर्डर हैं, दर्ज़ी देर रात तक काम कर रहे हैं, और कहा जाता है कि बारात के स्वागत में क्लब O7 का डांस फ्लोर मज़बूत किया जा रहा है।',
+    a2P2: 'मेहमानों से अनुरोध है कि पैरों को आराम दें, अपनी सबसे बढ़िया पोशाक तैयार रखें, और दोनों शामें पूरी तरह खाली रखें। अधिकारियों की पुष्टि: कोई बहाना स्वीकार नहीं किया जाएगा।',
+    fcH: 'विवाह का पूर्वानुमान',
+    fcP: 'दिल: लबालब। आशीर्वाद, मस्ती, संगीत, हँसी और ख़ुशी के आँसुओं की शत-प्रतिशत संभावना। आगे का हाल: हमेशा के लिए।',
+    tgH: 'तार',
+    tgP: 'तारीख़ें नोट करें <span class="stop">स्टॉप</span> औपचारिक निमंत्रण शीघ्र <span class="stop">स्टॉप</span> नाचने के जूते साथ लाएँ <span class="stop">स्टॉप</span>',
+    clH: 'वैवाहिक विज्ञापन',
+    ad1: '<b>मिला है</b>एक दूल्हा, पूरी तरह दिल हार चुका। खोया मिले तो वृद्धि को लौटाएँ।',
+    ad2: '<b>आवश्यकता है</b>आशीर्वाद और मौज-मस्ती के लिए आपकी उपस्थिति की। 24–25 फ़रवरी 2027 को स्वयं पधारें।',
+    ad3: '<b>बिकाऊ है</b>इस शादी में न आने के बहाने। हालत: बिल्कुल नए। प्रस्ताव: स्वीकार नहीं होंगे।',
+    col2: 'प्यार से छपा',
+    col3: 'जीवनभर के संस्करण का अंक 1'
+  },
+  gu: {
+    inv: '॥ શ્રી મહાવીરાય નમઃ ॥',
+    ears1: 'વર્ષ 1 — અંક 1',
+    ears2: 'બે દિલ · એક હેડલાઇન',
+    ears3: 'કિંમત: અમૂલ્ય',
+    tagline: 'છાપવા લાયક બધો પ્રેમ',
+    dlDate: 'રવિવાર, 11 ઑક્ટોબર 2026',
+    dlEd: 'ખાસ લગ્ન વિશેષાંક',
+    eyebrow: 'તારીખ નોંધી લેજો',
+    headline: 'વૃદ્ધિ અને અચલ લગ્નબંધનમાં',
+    byline: 'શાહ પરિવારના સંવાદદાતા તરફથી',
+    deck: 'બે દિલોએ લાંબા સમયથી ચર્ચાતા મિલનની પુષ્ટિ કરી; ક્લબ O7 ખાતે ઉજવણીના આદેશ — મહેમાનોને અભૂતપૂર્વ આનંદ માટે તૈયાર રહેવા વિનંતી.',
+    a1Kicker: 'શુભ જાહેરાત',
+    a1Head: 'તારીખ નક્કી, બંને પરિવારોમાં આનંદની લહેર',
+    a1P1: 'અત્યંત આનંદ સાથે વૃદ્ધિ અને અચલના પરિવારો વર-વધૂનાં લગ્નની જાહેરાત કરે છે, જે ગુરુવાર, 25 ફેબ્રુઆરી 2027ના રોજ ક્લબ O7, અમદાવાદ ખાતે યોજાશે.',
+    a1P2: 'ઉત્સવ એક દિવસ વહેલા, બુધવાર 24મીથી શરૂ થશે, જ્યારે બંને પરિવારો પ્રી-વેડિંગ ઉજવણી માટે ભેગા થશે: એવી સાંજ જેમાં સંગીત, નૃત્ય અને ઓછામાં ઓછા એક એવા આન્ટી કે અંકલ ચોક્કસ હશે જે કહેશે કે તેમને તો “પહેલેથી જ બધી ખબર હતી.”',
+    a1P3: 'સંવાદદાતાઓએ યુગલ પાસે ટિપ્પણી માગી. કન્યા મલકાઈ. વરરાજા હસી પડ્યા. બંનેના નિકટનાં સૂત્રોની પુષ્ટિ: આજીવન લવાજમ પર પરસ્પર સંમતિ થઈ ચૂકી છે.',
+    photoLabel: 'યુગલની<br>તસવીર',
+    caption: 'વૃદ્ધિ અને અચલ — ફોટોગ્રાફર પાસેથી તસવીરની રાહ છે, તેમનું વચન છે કે રાહ જોવી લેખે લાગશે.',
+    ev1Dt: 'પ્રી-વેડિંગ',
+    ev1Dd: '<span class="day">બુધવાર</span>24 ફેબ્રુઆરી 2027',
+    ev2Dt: 'લગ્ન',
+    ev2Dd: '<span class="day">ગુરુવાર</span>25 ફેબ્રુઆરી 2027',
+    venue: 'સ્થળ<strong>ક્લબ O7, અમદાવાદ</strong>',
+    a2Kicker: 'સ્થળ સમાચાર',
+    a2Head: 'બે દિવસની ઉજવણી માટે ક્લબ O7 સજ્જ',
+    a2P1: 'શહેરભરમાં તૈયારીઓ પુરજોશમાં ચાલી રહી છે. ફૂલવાળાઓ પાસે રેકોર્ડ ઓર્ડર છે, દરજીઓ મોડી રાત સુધી કામ કરી રહ્યા છે, અને કહેવાય છે કે જાનના સ્વાગત માટે ક્લબ O7નો ડાન્સ ફ્લોર મજબૂત કરાઈ રહ્યો છે.',
+    a2P2: 'મહેમાનોને વિનંતી છે કે પગને આરામ આપે, પોતાનો શ્રેષ્ઠ પોશાક તૈયાર રાખે, અને બંને સાંજ સંપૂર્ણ ખાલી રાખે. અધિકારીઓની પુષ્ટિ: કોઈ બહાનું ચલાવી લેવાશે નહીં.',
+    fcH: 'લગ્નની આગાહી',
+    fcP: 'દિલ: છલોછલ. આશીર્વાદ, મોજ-મસ્તી, સંગીત, હાસ્ય અને ખુશીનાં આંસુની સો ટકા શક્યતા. ભવિષ્ય: કાયમ માટે.',
+    tgH: 'તાર',
+    tgP: 'તારીખો નોંધી લો <span class="stop">સ્ટોપ</span> ઔપચારિક આમંત્રણ ટૂંકમાં <span class="stop">સ્ટોપ</span> નાચવાના શૂઝ સાથે લાવજો <span class="stop">સ્ટોપ</span>',
+    clH: 'લગ્નવિષયક જાહેરાતો',
+    ad1: '<b>મળ્યો છે</b>એક વરરાજા, સંપૂર્ણ દિલ હારી ચૂકેલો. ખોવાયેલો મળે તો વૃદ્ધિને પરત કરવો.',
+    ad2: '<b>જોઈએ છે</b>આશીર્વાદ અને મોજમસ્તી માટે આપની હાજરી. 24–25 ફેબ્રુઆરી 2027ના રોજ રૂબરૂ પધારશો.',
+    ad3: '<b>વેચવાના છે</b>આ લગ્નમાં ન આવવાનાં બહાનાં. સ્થિતિ: વણવપરાયેલાં. ઓફર: સ્વીકારાશે નહીં.',
+    col2: 'પ્રેમથી છાપેલું',
+    col3: 'આજીવન આવૃત્તિનો અંક 1'
+  },
+  mr: {
+    inv: '॥ श्री महावीराय नमः ॥',
+    ears1: 'वर्ष 1 — अंक 1',
+    ears2: 'दोन हृदये · एक मथळा',
+    ears3: 'किंमत: अनमोल',
+    tagline: 'छापण्याजोगे सारे प्रेम',
+    dlDate: 'रविवार, 11 ऑक्टोबर 2026',
+    dlEd: 'विशेष विवाह आवृत्ती',
+    eyebrow: 'तारीख नोंदवून ठेवा',
+    headline: 'वृद्धी आणि अचल विवाहबद्ध होणार',
+    byline: 'शाह कुटुंबाच्या वार्ताहराकडून',
+    deck: 'दोन हृदयांनी बहुचर्चित मीलनावर शिक्कामोर्तब केले; क्लब O7 येथे सोहळ्याचे आदेश — पाहुण्यांनी अभूतपूर्व आनंदासाठी तयार राहावे.',
+    a1Kicker: 'शुभ घोषणा',
+    a1Head: 'तारीख ठरली, दोन्ही कुटुंबांत आनंदाची लाट',
+    a1P1: 'अत्यंत आनंदाने वृद्धी आणि अचल यांचे कुटुंबीय वधू-वरांच्या विवाहाची घोषणा करत आहेत; हा विवाह गुरुवार, 25 फेब्रुवारी 2027 रोजी क्लब O7, अहमदाबाद येथे संपन्न होईल.',
+    a1P2: 'सोहळ्याची सुरुवात एक दिवस आधी, बुधवार 24 तारखेला होईल, जेव्हा दोन्ही कुटुंबे प्री-वेडिंग समारंभासाठी एकत्र येतील: अशी संध्याकाळ जिथे संगीत, नृत्य आणि “मला आधीच माहीत होतं” असे म्हणणारे किमान एक काका किंवा काकू नक्की असतील.',
+    a1P3: 'वार्ताहरांनी जोडप्याकडे प्रतिक्रिया मागितली. वधू हसली. वर खुदकन हसला. दोघांच्या निकटवर्तीयांची पुष्टी: आजीवन वर्गणीवर परस्पर सहमती झाली आहे.',
+    photoLabel: 'जोडप्याचे<br>छायाचित्र',
+    caption: 'वृद्धी आणि अचल — छायाचित्रकाराकडून पोर्ट्रेटची प्रतीक्षा आहे; त्यांचे वचन आहे की वाट पाहणे सार्थकी लागेल.',
+    ev1Dt: 'प्री-वेडिंग',
+    ev1Dd: '<span class="day">बुधवार</span>24 फेब्रुवारी 2027',
+    ev2Dt: 'विवाह',
+    ev2Dd: '<span class="day">गुरुवार</span>25 फेब्रुवारी 2027',
+    venue: 'स्थळ<strong>क्लब O7, अहमदाबाद</strong>',
+    a2Kicker: 'स्थळ वृत्त',
+    a2Head: 'दोन दिवसांच्या सोहळ्यासाठी क्लब O7 सज्ज',
+    a2P1: 'शहरभर तयारी जोरात सुरू आहे. फुलवाल्यांकडे विक्रमी ऑर्डर आहेत, शिंपी रात्री उशिरापर्यंत काम करत आहेत, आणि वरातीच्या स्वागतासाठी क्लब O7 चा डान्स फ्लोर मजबूत केला जात असल्याचे म्हटले जाते.',
+    a2P2: 'पाहुण्यांनी पायांना विश्रांती द्यावी, आपला उत्तम पोशाख तयार ठेवावा, आणि दोन्ही संध्याकाळ पूर्णपणे मोकळ्या ठेवाव्यात. अधिकाऱ्यांची पुष्टी: कोणतीही सबब चालणार नाही.',
+    fcH: 'विवाहाचा अंदाज',
+    fcP: 'हृदये: काठोकाठ. आशीर्वाद, धमाल, संगीत, हास्य आणि आनंदाश्रूंची शंभर टक्के शक्यता. भविष्य: कायमचे.',
+    tgH: 'तार',
+    tgP: 'तारखा नोंदवा <span class="stop">स्टॉप</span> औपचारिक निमंत्रण लवकरच <span class="stop">स्टॉप</span> नाचण्याचे बूट घेऊन या <span class="stop">स्टॉप</span>',
+    clH: 'वैवाहिक जाहिराती',
+    ad1: '<b>सापडला आहे</b>एक नवरदेव, पुरता प्रेमात पडलेला. हरवलेला आढळल्यास वृद्धीकडे परत करावा.',
+    ad2: '<b>पाहिजे</b>आशीर्वाद आणि धमाल यासाठी आपली उपस्थिती. 24–25 फेब्रुवारी 2027 रोजी स्वतः यावे.',
+    ad3: '<b>विकणे आहे</b>या लग्नाला न येण्याची कारणे. स्थिती: न वापरलेली. ऑफर: स्वीकारल्या जाणार नाहीत.',
+    col2: 'प्रेमाने छापलेले',
+    col3: 'आयुष्यभराच्या आवृत्तीचा अंक 1'
+  }
+};
+
+function setLang(l){
+  if(!I18N[l]) l = 'en';
+  document.documentElement.setAttribute('data-lang', l);
+  document.documentElement.lang = l;
+  document.querySelectorAll('[data-i18n]').forEach(function(el){
+    var v = I18N[l][el.getAttribute('data-i18n')];
+    if(v != null) el.innerHTML = v;
+  });
+  document.querySelectorAll('.lang-switch button').forEach(function(b){
+    var on = b.dataset.set === l;
+    b.classList.toggle('active', on);
+    b.setAttribute('aria-pressed', on ? 'true' : 'false');
+  });
+  try{ localStorage.setItem('vaddin-lang', l); }catch(e){}
+}
+
+document.querySelectorAll('.lang-switch button').forEach(function(b){
+  b.addEventListener('click', function(){ setLang(b.dataset.set); });
+});
+
+var saved = 'en';
+try{ saved = localStorage.getItem('vaddin-lang') || 'en'; }catch(e){}
+if(saved !== 'en') setLang(saved);
+</script>
 </body>
 </html>
