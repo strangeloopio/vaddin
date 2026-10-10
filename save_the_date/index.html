@@ -200,6 +200,36 @@
     color:var(--ink);
   }
 
+  .panels{
+    margin-top:clamp(24px,4.5vw,34px);
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:18px;
+  }
+  .panel{
+    border-top:3px double var(--rule);
+    border-bottom:3px double var(--rule);
+    padding:14px 12px 16px;
+    min-width:0;
+  }
+  .panel h3{
+    margin:0 0 8px;
+    font-family:var(--display);
+    font-weight:700;
+    font-size:.78rem;
+    letter-spacing:.3em;
+    text-transform:uppercase;
+  }
+  .panel p{margin:0; font-size:.92rem; line-height:1.55; font-style:italic}
+  .panel.telegram p{
+    font-style:normal;
+    font-size:.78rem;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    line-height:1.9;
+  }
+  .panel.telegram .stop{font-weight:700}
+
   .classifieds{
     margin-top:clamp(24px,4.5vw,34px);
   }
@@ -248,6 +278,7 @@
     .dates .event + .event{border-left:0; border-top:1px solid var(--rule-faint); padding-top:20px}
     .ads{grid-template-columns:1fr; gap:14px}
     .ads div + div{border-left:0; border-top:1px solid var(--rule-faint); padding-top:14px}
+    .panels{grid-template-columns:1fr}
   }
 </style>
 </head>
@@ -294,6 +325,17 @@
     </dl>
     <p class="venue">Venue<strong>Club O7, Ahmedabad</strong></p>
   </section>
+
+  <div class="panels">
+    <section class="panel">
+      <h3>The Wedding Forecast</h3>
+      <p>Hearts: full. A one-hundred per cent chance of blessings, fun, music, laughter and happy tears. Outlook: forever.</p>
+    </section>
+    <section class="panel telegram">
+      <h3>Telegram</h3>
+      <p>Save the dates <span class="stop">stop</span> formal invitation to follow <span class="stop">stop</span> bring your dancing shoes <span class="stop">stop</span></p>
+    </section>
+  </div>
 
   <section class="classifieds">
     <h3>Matrimonial Classifieds</h3>
