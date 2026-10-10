@@ -4,19 +4,16 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>The VAddin Times</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&display=swap">
 <style>
-  /* Layout concept: a single aged broadsheet sheet on a dark desk — masthead, headline,
-     three rule-divided columns with the photograph plated in the centre. Single-theme by design. */
+  /* Layout concept: one centred black-and-white column — invocation, masthead,
+     headline, photograph plate, the two dates. Nothing else. Single-theme by design. */
   :root{
-    --desk:#262219;          /* the table the paper lies on */
-    --paper:#f4eedb;         /* aged newsprint */
-    --paper-deep:#ece4cc;    /* boxes & panels */
-    --ink:#211d15;           /* letterpress black */
-    --ink-soft:#5a5340;      /* bylines, captions */
-    --rule:#211d15;          /* heavy rules */
-    --rule-faint:#b7ac8d;    /* column hairlines */
-    --accent:#8e2420;        /* letterpress red */
+    --paper:#ffffff;
+    --ink:#111111;
+    --ink-soft:#555550;
+    --rule:#111111;
+    --rule-faint:#c9c9c4;
     --display:'Playfair Display', Georgia, 'Times New Roman', serif;
     --body:'Old Standard TT', Georgia, 'Times New Roman', serif;
     --masthead:'UnifrakturMaguntia', 'Playfair Display', Georgia, serif;
@@ -24,448 +21,195 @@
   *{box-sizing:border-box}
   html,body{margin:0}
   body{
-    background:var(--desk);
+    background:var(--paper);
     color:var(--ink);
     font-family:var(--body);
-    padding-block:clamp(16px,3vw,48px);
+    padding-block:clamp(24px,5vw,56px);
     padding-inline:16px;
     -webkit-font-smoothing:antialiased;
   }
   .sheet{
-    position:relative;
-    max-width:1060px;
+    max-width:720px;
     margin-inline:auto;
-    background:var(--paper);
-    padding:clamp(18px,4vw,52px);
-    box-shadow:0 1px 2px rgba(0,0,0,.4), 0 18px 48px rgba(0,0,0,.55);
-  }
-  .sheet::after{
-    content:"";
-    position:absolute; inset:0;
-    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-    opacity:.07;
-    mix-blend-mode:multiply;
-    pointer-events:none;
+    text-align:center;
   }
 
-  /* ---------- masthead ---------- */
-  .ears{
-    display:flex; justify-content:space-between; align-items:baseline; gap:12px;
-    font-size:.72rem; letter-spacing:.14em; text-transform:uppercase;
-    border-bottom:1px solid var(--rule);
-    padding-bottom:6px;
+  .invocation{
+    font-size:.82rem;
+    letter-spacing:.3em;
+    text-transform:uppercase;
+    margin:0 0 14px;
   }
-  .ears .mid{color:var(--ink-soft)}
+
   .masthead{
-    text-align:center;
-    padding-block:clamp(14px,3vw,26px) 10px;
+    border-top:1px solid var(--rule);
+    border-bottom:3px double var(--rule);
+    padding-block:clamp(16px,4vw,28px) clamp(12px,3vw,20px);
   }
   .masthead h1{
     margin:0;
     font-family:var(--masthead);
     font-weight:400;
-    font-size:clamp(2.5rem,9.5vw,5.4rem);
+    font-size:clamp(2.6rem,10vw,5rem);
     line-height:1.05;
     letter-spacing:.01em;
     text-wrap:balance;
   }
-  .masthead h1 .init{color:var(--accent)}
-  .tagline{
-    margin-top:8px;
-    display:flex; align-items:center; justify-content:center; gap:14px;
-    font-size:.74rem; letter-spacing:.3em; text-transform:uppercase;
-  }
-  .tagline::before,.tagline::after{content:"❧"; letter-spacing:0; color:var(--ink-soft)}
-  .dateline{
-    display:flex; justify-content:center; flex-wrap:wrap; column-gap:10px; row-gap:2px;
-    border-top:3px double var(--rule);
-    border-bottom:3px double var(--rule);
-    margin-top:14px;
-    padding-block:7px;
-    font-size:.76rem; letter-spacing:.16em; text-transform:uppercase;
-    text-align:center;
-  }
-  .dateline .sep{color:var(--accent)}
 
-  /* ---------- headline ---------- */
-  .banner{text-align:center; padding-block:clamp(20px,4vw,34px) clamp(16px,3vw,26px)}
+  .dateline{
+    display:flex; justify-content:center; flex-wrap:wrap; column-gap:12px; row-gap:2px;
+    border-bottom:1px solid var(--rule);
+    padding-block:8px;
+    font-size:.78rem;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+  }
+
+  .banner{padding-block:clamp(26px,5vw,40px) clamp(20px,4vw,30px)}
   .eyebrow{
-    font-family:var(--display);
-    font-size:.92rem; font-weight:700; letter-spacing:.42em; text-transform:uppercase;
-    color:var(--accent);
-    margin:0 0 10px;
+    margin:0 0 12px;
+    font-size:.8rem;
+    letter-spacing:.44em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
   }
   .banner h2{
     margin:0;
     font-family:var(--display);
     font-weight:900;
-    font-size:clamp(2rem,6.6vw,4.3rem);
-    line-height:1.04;
+    font-size:clamp(1.9rem,6.4vw,3.6rem);
+    line-height:1.08;
     text-transform:uppercase;
-    letter-spacing:.015em;
-    text-wrap:balance;
-  }
-  .deck{
-    margin:14px auto 0;
-    max-width:46rem;
-    font-style:italic;
-    font-size:clamp(1rem,2.2vw,1.2rem);
-    line-height:1.5;
-    color:var(--ink-soft);
+    letter-spacing:.02em;
     text-wrap:balance;
   }
 
-  /* ---------- page grid ---------- */
-  .page{
-    display:grid;
-    grid-template-columns:1fr 1.28fr 1fr;
-    grid-template-areas:
-      "left photo right"
-      "left events right";
-    grid-template-rows:auto 1fr;
-    border-top:1px solid var(--rule);
-    margin-top:4px;
-  }
-  .area-left{grid-area:left; padding:20px 22px 20px 0; border-right:1px solid var(--rule-faint); min-width:0}
-  .area-photo{grid-area:photo; padding:20px 22px 6px; min-width:0}
-  .area-events{grid-area:events; padding:6px 22px 20px; min-width:0}
-  .area-right{grid-area:right; padding:20px 0 20px 22px; border-left:1px solid var(--rule-faint); min-width:0}
-
-  .article h3{
-    margin:0 0 4px;
-    font-family:var(--display);
-    font-weight:700;
-    font-size:1.18rem;
-    line-height:1.25;
-    text-transform:uppercase;
-    letter-spacing:.04em;
-    text-align:center;
-    text-wrap:balance;
-  }
-  .kicker{
-    text-align:center;
-    font-size:.68rem; letter-spacing:.26em; text-transform:uppercase;
-    color:var(--accent);
-    margin:0 0 6px;
-  }
-  .article .rule{
-    width:64px; margin:10px auto 12px;
-    border-top:1px solid var(--rule);
-    border-bottom:1px solid var(--rule);
-    height:3px;
-  }
-  .article p{
-    margin:0 0 .85em;
-    font-size:.96rem;
-    line-height:1.58;
-    text-align:justify;
-    hyphens:auto;
-  }
-  .article p.lede::first-letter{
-    font-family:var(--display);
-    font-weight:900;
-    font-size:3.1em;
-    float:left;
-    line-height:.82;
-    padding:.04em .1em 0 0;
-    color:var(--accent);
-  }
-  .byline{
-    text-align:center;
-    font-size:.72rem; letter-spacing:.18em; text-transform:uppercase;
-    color:var(--ink-soft);
-    margin:0 0 12px;
-  }
-
-  /* ---------- photograph plate ---------- */
   .plate{
     border:1px solid var(--ink);
-    padding:7px;
-    background:var(--paper-deep);
+    padding:8px;
+    max-width:440px;
+    margin-inline:auto;
   }
   .plate .frame{
     aspect-ratio:4/5;
     max-width:100%;
-    border:1px dashed var(--ink-soft);
+    border:1px dashed var(--rule-faint);
     display:grid;
     place-content:center;
-    gap:10px;
-    text-align:center;
+    gap:8px;
     padding:16px;
   }
-  .plate .frame .orn{font-size:1.5rem; color:var(--accent)}
-  .plate .frame .label{
+  .plate .label{
     font-family:var(--display);
-    font-weight:700;
-    font-size:.86rem;
-    letter-spacing:.22em;
+    font-size:.8rem;
+    letter-spacing:.26em;
     text-transform:uppercase;
-  }
-  .plate .frame .sub{
-    font-style:italic;
-    font-size:.86rem;
     color:var(--ink-soft);
-  }
-  .caption{
-    margin:9px 2px 0;
-    font-size:.82rem;
-    font-style:italic;
-    line-height:1.45;
-    color:var(--ink-soft);
-    text-align:center;
   }
 
-  /* ---------- order of festivities ---------- */
-  .events{
-    margin-top:18px;
-    border:3px double var(--rule);
-    padding:18px 16px 20px;
-    text-align:center;
-    background:var(--paper-deep);
+  .dates{
+    margin-top:clamp(28px,5vw,40px);
+    border-top:3px double var(--rule);
+    border-bottom:3px double var(--rule);
+    padding-block:clamp(20px,4vw,28px);
   }
-  .events h3{
-    margin:0;
-    font-family:var(--display);
-    font-weight:900;
-    font-size:1.05rem;
-    letter-spacing:.3em;
+  .dates .grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    align-items:start;
+  }
+  .dates .event + .event{border-left:1px solid var(--rule-faint)}
+  .dates .event{padding-inline:14px; min-width:0}
+  .dates dt{
+    font-size:.72rem;
+    letter-spacing:.34em;
     text-transform:uppercase;
+    color:var(--ink-soft);
   }
-  .events .orn{color:var(--accent); margin-top:6px; letter-spacing:.5em}
-  .events dl{margin:14px 0 0; display:grid; gap:14px}
-  .events dt{
-    font-size:.7rem; letter-spacing:.3em; text-transform:uppercase;
-    color:var(--accent);
-    font-weight:700;
-  }
-  .events dd{
-    margin:3px 0 0;
+  .dates dd{
+    margin:8px 0 0;
     font-family:var(--display);
     font-weight:700;
-    font-size:1.12rem;
-    line-height:1.3;
+    font-size:clamp(1.02rem,2.6vw,1.3rem);
+    line-height:1.35;
   }
-  .events dd small{
+  .dates dd .day{
     display:block;
     font-family:var(--body);
     font-weight:400;
     font-style:italic;
-    font-size:.84rem;
+    font-size:.9rem;
     color:var(--ink-soft);
-    margin-top:2px;
+    margin-bottom:3px;
+    letter-spacing:.06em;
   }
-  .events .venue{
-    margin-top:16px;
-    padding-top:12px;
+  .venue{
+    margin:clamp(18px,3.5vw,24px) auto 0;
+    padding-top:14px;
     border-top:1px solid var(--rule-faint);
-    font-size:.8rem; letter-spacing:.24em; text-transform:uppercase;
-  }
-  .events .venue strong{display:block; font-size:.98rem; letter-spacing:.3em; margin-top:4px}
-
-  /* ---------- side panels ---------- */
-  .panel{
-    margin-top:18px;
-    border-top:3px double var(--rule);
-    border-bottom:3px double var(--rule);
-    padding:12px 4px 14px;
-    text-align:center;
-  }
-  .panel h4{
-    margin:0 0 8px;
-    font-family:var(--display);
-    font-weight:700;
-    font-size:.82rem;
+    max-width:320px;
+    font-size:.74rem;
     letter-spacing:.3em;
     text-transform:uppercase;
+    color:var(--ink-soft);
   }
-  .panel p{margin:0; font-size:.9rem; line-height:1.55; font-style:italic}
-  .panel.telegram p{
-    font-style:normal;
-    font-size:.82rem;
-    letter-spacing:.14em;
-    text-transform:uppercase;
-    line-height:1.9;
-  }
-  .panel.telegram .stop{color:var(--accent); font-weight:700}
-
-  /* ---------- classifieds ---------- */
-  .classifieds{
-    border-top:1px solid var(--rule);
-    margin-top:4px;
-    padding-top:16px;
-  }
-  .classifieds h4{
-    margin:0 0 12px;
-    text-align:center;
+  .venue strong{
+    display:block;
+    margin-top:6px;
     font-family:var(--display);
     font-weight:700;
-    font-size:.8rem;
-    letter-spacing:.34em;
-    text-transform:uppercase;
-  }
-  .ads{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:0 22px;
-  }
-  .ads div{
-    font-size:.82rem;
-    line-height:1.5;
-    text-align:center;
-    padding-inline:4px;
-    min-width:0;
-  }
-  .ads div + div{border-left:1px solid var(--rule-faint)}
-  .ads b{
-    display:block;
-    font-family:var(--display);
-    letter-spacing:.14em;
-    text-transform:uppercase;
-    font-size:.72rem;
-    margin-bottom:3px;
-    color:var(--accent);
+    font-size:1.05rem;
+    letter-spacing:.24em;
+    color:var(--ink);
   }
 
-  .colophon{
-    margin-top:18px;
-    border-top:3px double var(--rule);
-    padding-top:9px;
-    display:flex; justify-content:center; flex-wrap:wrap; column-gap:12px; row-gap:2px;
-    font-size:.68rem; letter-spacing:.2em; text-transform:uppercase;
-    color:var(--ink-soft);
-    text-align:center;
-  }
-  .colophon .sep{color:var(--accent)}
-
-  /* ---------- phone ---------- */
-  @media (max-width:860px){
-    .page{
-      grid-template-columns:1fr;
-      grid-template-areas:"photo" "events" "left" "right";
-      grid-template-rows:auto;
-    }
-    .area-left,.area-right{border:0; padding:20px 0 4px}
-    .area-photo{padding:20px 0 0}
-    .area-events{padding:0 0 20px}
-    .area-left{border-top:1px solid var(--rule-faint); margin-top:4px}
-    .area-right{border-top:1px solid var(--rule-faint)}
-    .ads{grid-template-columns:1fr; gap:14px}
-    .ads div + div{border-left:0; border-top:1px solid var(--rule-faint); padding-top:14px}
-    .article p{text-align:left; hyphens:none}
+  @media (max-width:520px){
+    .dates .grid{grid-template-columns:1fr; row-gap:20px}
+    .dates .event + .event{border-left:0; border-top:1px solid var(--rule-faint); padding-top:20px}
   }
 </style>
 </head>
 <body>
 <div class="sheet">
 
-  <div class="ears" aria-hidden="false">
-    <span>Vol. I &mdash; No. 1</span>
-    <span class="mid">Two Hearts &middot; One Headline</span>
-    <span>Price: Priceless</span>
-  </div>
+  <p class="invocation">&#2405; Shree Mahaviray Namah &#2405;</p>
 
   <header class="masthead">
-    <h1>The <span class="init">V</span><span class="init">A</span>ddin Times</h1>
-    <p class="tagline">All the love that&rsquo;s fit to print</p>
-    <div class="dateline">
-      <span>Ahmedabad, Gujarat</span>
-      <span class="sep">&#10022;</span>
-      <span>Thursday, 25 February 2027</span>
-      <span class="sep">&#10022;</span>
-      <span>Special Wedding Edition</span>
-    </div>
+    <h1>The VAddin Times</h1>
   </header>
+
+  <div class="dateline">
+    <span>Ahmedabad</span>
+    <span>&mdash;</span>
+    <span>Sunday, 11 October 2026</span>
+  </div>
 
   <section class="banner">
     <p class="eyebrow">Save the Date</p>
-    <h2>Vrudhi &amp; Achal to&nbsp;Wed!</h2>
-    <p class="deck">Two hearts confirm a long-rumoured merger; grand celebrations ordered at Club O7, Ahmedabad &mdash; the city is advised to prepare for unprecedented merriment.</p>
+    <h2>Vrudhi &amp; Achal to&nbsp;Wed</h2>
   </section>
 
-  <div class="page">
-
-    <div class="area-left">
-      <article class="article">
-        <p class="kicker">The Happy Announcement</p>
-        <h3>Families Overjoyed as Couple Sets the Date</h3>
-        <div class="rule"></div>
-        <p class="byline">From our correspondent in Ahmedabad</p>
-        <p class="lede">It is with great joy &mdash; and very little surprise to anyone who has ever seen them together &mdash; that the families of Vrudhi and Achal announce the wedding of the bride and groom, to be solemnised on Thursday, the 25th of February, 2027, at Club O7, Ahmedabad.</p>
-        <p>Festivities open a day earlier, on Wednesday the 24th, when both families gather for the pre-wedding celebrations: an evening expected to feature music, dancing, and at least one uncle who insists he &ldquo;called it years ago.&rdquo;</p>
-        <p>Reporters pressed the couple for comment. The bride smiled. The groom grinned. Sources close to both confirm that this is how it has been for quite some time, and that a lifetime subscription has now been mutually agreed upon.</p>
-      </article>
+  <figure style="margin:0">
+    <div class="plate">
+      <div class="frame">
+        <span class="label">Photograph of<br>the Couple</span>
+      </div>
     </div>
+  </figure>
 
-    <div class="area-photo">
-      <figure style="margin:0">
-        <div class="plate">
-          <div class="frame">
-            <span class="orn">&#10022;</span>
-            <span class="label">Photograph of<br>the Happy Couple</span>
-            <span class="sub">( to be affixed here )</span>
-            <span class="orn">&#10022;</span>
-          </div>
-        </div>
-        <figcaption class="caption">Vrudhi &amp; Achal &mdash; portrait awaited from the photographer, who promises it is well worth the wait.</figcaption>
-      </figure>
-    </div>
-
-    <div class="area-events">
-      <section class="events">
-        <h3>Order of Festivities</h3>
-        <div class="orn">&#10022;&#10022;&#10022;</div>
-        <dl>
-          <div>
-            <dt>The Pre-Wedding</dt>
-            <dd>Wednesday, 24 February 2027<small>celebrations, music &amp; dancing</small></dd>
-          </div>
-          <div>
-            <dt>The Wedding</dt>
-            <dd>Thursday, 25 February 2027<small>the main event, a lifetime in the making</small></dd>
-          </div>
-        </dl>
-        <p class="venue">Venue<strong>Club O7 &middot; Ahmedabad</strong></p>
-      </section>
-    </div>
-
-    <div class="area-right">
-      <article class="article">
-        <p class="kicker">City Desk</p>
-        <h3>Ahmedabad Braces for Two Days of Festivities</h3>
-        <div class="rule"></div>
-        <p>Preparations are well underway across the city. Florists report record orders, tailors are working by lamplight, and the dance floor at Club O7 is said to be undergoing structural reinforcement in anticipation of the baraat.</p>
-        <p>Guests are advised to rest their feet, press their finest attire, and keep both evenings entirely free of other engagements. Officials confirm that no excuses will be entertained.</p>
-      </article>
-
-      <section class="panel">
-        <h4>The Wedding Forecast</h4>
-        <p>Skies: clear. Hearts: full. A one-hundred per cent chance of music, laughter and happy tears. Outlook: forever.</p>
-      </section>
-
-      <section class="panel telegram">
-        <h4>Telegram</h4>
-        <p>Save the dates <span class="stop">stop</span> formal invitation to follow <span class="stop">stop</span> bring your dancing shoes <span class="stop">stop</span></p>
-      </section>
-    </div>
-
-  </div>
-
-  <section class="classifieds">
-    <h4>Matrimonial Classifieds</h4>
-    <div class="ads">
-      <div><b>Found</b>One groom, completely smitten. If lost, return to Vrudhi.</div>
-      <div><b>Wanted</b>Your presence on the dance floor. Apply in person, 24&ndash;25 February 2027.</div>
-      <div><b>For Sale</b>Excuses for missing this wedding. Condition: unused. Offers: not accepted.</div>
-    </div>
+  <section class="dates">
+    <dl class="grid" style="margin:0">
+      <div class="event">
+        <dt>Pre-Wedding</dt>
+        <dd><span class="day">Wednesday</span>24 February 2027</dd>
+      </div>
+      <div class="event">
+        <dt>Wedding</dt>
+        <dd><span class="day">Thursday</span>25 February 2027</dd>
+      </div>
+    </dl>
+    <p class="venue">Venue<strong>Club O7, Ahmedabad</strong></p>
   </section>
-
-  <footer class="colophon">
-    <span>The VAddin Times</span>
-    <span class="sep">&#10087;</span>
-    <span>Printed with love in Ahmedabad</span>
-    <span class="sep">&#10087;</span>
-    <span>No. 1 of a lifetime edition</span>
-  </footer>
 
 </div>
 </body>
