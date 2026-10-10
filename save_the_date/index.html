@@ -21,14 +21,17 @@
   :root[data-lang="hi"]{
     --display:'Tiro Devanagari Hindi', Georgia, serif;
     --body:'Tiro Devanagari Hindi', Georgia, serif;
+    --masthead:'Tiro Devanagari Hindi', Georgia, serif;
   }
   :root[data-lang="mr"]{
     --display:'Tiro Devanagari Marathi', Georgia, serif;
     --body:'Tiro Devanagari Marathi', Georgia, serif;
+    --masthead:'Tiro Devanagari Marathi', Georgia, serif;
   }
   :root[data-lang="gu"]{
     --display:'Noto Serif Gujarati', Georgia, serif;
     --body:'Noto Serif Gujarati', Georgia, serif;
+    --masthead:'Noto Serif Gujarati', Georgia, serif;
   }
   *{box-sizing:border-box}
   html,body{margin:0}
@@ -451,7 +454,7 @@
   </div>
 
   <header class="masthead">
-    <h1>The VAddin Times</h1>
+    <h1 data-i18n="masthead">The VAddin Times</h1>
     <p class="tagline" data-i18n="tagline">All the love that&rsquo;s fit to print</p>
   </header>
 
@@ -543,7 +546,7 @@
   </section>
 
   <footer class="colophon">
-    <span>The VAddin Times</span>
+    <span data-i18n="col1">The VAddin Times</span>
     <span class="sep">&#10087;</span>
     <span data-i18n="col2">Printed with love</span>
     <span class="sep">&#10087;</span>
@@ -555,6 +558,8 @@
 <script>
 const I18N = {
   en: {
+    masthead: 'The VAddin Times',
+    col1: 'The VAddin Times',
     inv: '॥ Shree Mahaviray Namaha ॥',
     ears1: 'Vol. I — No. 1',
     ears2: 'Two Hearts · One Headline',
@@ -594,6 +599,8 @@ const I18N = {
     col3: 'No. 1 of a lifetime edition'
   },
   hi: {
+    masthead: 'द वाडिन टाइम्स',
+    col1: 'द वाडिन टाइम्स',
     inv: '॥ श्री महावीराय नमः ॥',
     ears1: 'वर्ष 1 — अंक 1',
     ears2: 'दो दिल · एक सुर्ख़ी',
@@ -633,6 +640,8 @@ const I18N = {
     col3: 'जीवनभर के संस्करण का अंक 1'
   },
   gu: {
+    masthead: 'ધ વાડિન ટાઇમ્સ',
+    col1: 'ધ વાડિન ટાઇમ્સ',
     inv: '॥ શ્રી મહાવીરાય નમઃ ॥',
     ears1: 'વર્ષ 1 — અંક 1',
     ears2: 'બે દિલ · એક હેડલાઇન',
@@ -672,6 +681,8 @@ const I18N = {
     col3: 'આજીવન આવૃત્તિનો અંક 1'
   },
   mr: {
+    masthead: 'द वाडिन टाइम्स',
+    col1: 'द वाडिन टाइम्स',
     inv: '॥ श्री महावीराय नमः ॥',
     ears1: 'वर्ष 1 — अंक 1',
     ears2: 'दोन हृदये · एक मथळा',
