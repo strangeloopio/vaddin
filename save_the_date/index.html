@@ -6,8 +6,8 @@
 <title>The VAddin Times</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&display=swap">
 <style>
-  /* Layout concept: one centred black-and-white column — invocation, masthead,
-     headline, photograph plate, the two dates. Nothing else. Single-theme by design. */
+  /* Layout concept: black-and-white broadsheet — centred masthead and headline, then three
+     rule-divided columns: announcement | photograph & dates | venue desk. Single-theme by design. */
   :root{
     --paper:#ffffff;
     --ink:#111111;
@@ -29,7 +29,7 @@
     -webkit-font-smoothing:antialiased;
   }
   .sheet{
-    max-width:720px;
+    max-width:1040px;
     margin-inline:auto;
     text-align:center;
   }
@@ -55,7 +55,6 @@
     letter-spacing:.02em;
     text-wrap:balance;
   }
-
   .tagline{
     margin:12px 0 0;
     font-size:.72rem;
@@ -102,13 +101,70 @@
   }
   .deck{
     margin:10px auto 0;
-    max-width:34rem;
+    max-width:44rem;
     font-style:italic;
     font-size:clamp(.98rem,2.2vw,1.12rem);
     line-height:1.5;
     text-wrap:balance;
   }
 
+  /* ---------- three-column page ---------- */
+  .page{
+    display:grid;
+    grid-template-columns:1fr 1.28fr 1fr;
+    grid-template-areas:
+      "left photo right"
+      "left events right";
+    grid-template-rows:auto 1fr;
+    border-top:1px solid var(--rule);
+  }
+  .area-left{grid-area:left; padding:24px 22px 24px 0; border-right:1px solid var(--rule-faint); min-width:0}
+  .area-photo{grid-area:photo; padding:24px 22px 8px; min-width:0}
+  .area-events{grid-area:events; padding:10px 22px 24px; min-width:0}
+  .area-right{grid-area:right; padding:24px 0 24px 22px; border-left:1px solid var(--rule-faint); min-width:0}
+
+  .article .kicker{
+    margin:0 0 8px;
+    font-size:.68rem;
+    letter-spacing:.26em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+  }
+  .article h3{
+    margin:0;
+    font-family:var(--display);
+    font-weight:700;
+    font-size:1.18rem;
+    line-height:1.3;
+    text-transform:uppercase;
+    letter-spacing:.03em;
+    text-wrap:balance;
+  }
+  .article .rule{
+    width:64px;
+    margin:12px auto 14px;
+    border-top:1px solid var(--rule);
+    border-bottom:1px solid var(--rule);
+    height:3px;
+  }
+  .article p{
+    margin:0 0 .9em;
+    font-size:.94rem;
+    line-height:1.62;
+    text-align:justify;
+    hyphens:auto;
+  }
+  .article p:last-child{margin-bottom:0}
+  .article p.lede::first-letter{
+    font-family:var(--display);
+    font-weight:900;
+    font-size:2.9em;
+    float:left;
+    line-height:.84;
+    padding:.05em .12em 0 0;
+  }
+
+  /* ---------- photograph plate ---------- */
   .plate{
     border:1px solid var(--ink);
     padding:8px;
@@ -143,19 +199,27 @@
     text-transform:uppercase;
     color:var(--ink-soft);
   }
+  .caption{
+    margin:10px 2px 0;
+    font-size:.85rem;
+    font-style:italic;
+    line-height:1.5;
+    color:var(--ink-soft);
+  }
 
+  /* ---------- order of festivities ---------- */
   .dates{
-    margin-top:clamp(28px,5vw,40px);
+    margin-top:clamp(16px,3vw,22px);
     border-top:3px double var(--rule);
     border-bottom:3px double var(--rule);
-    padding-block:clamp(20px,4vw,28px);
+    padding-block:clamp(18px,3.5vw,24px);
   }
   .dates .grid{
     display:grid;
-    grid-template-columns:1fr 1fr;
-    align-items:start;
+    grid-template-columns:1fr;
+    row-gap:18px;
   }
-  .dates .event + .event{border-left:1px solid var(--rule-faint)}
+  .dates .event + .event{border-top:1px solid var(--rule-faint); padding-top:18px}
   .dates .event{padding-inline:14px; min-width:0}
   .dates dt{
     font-size:.72rem;
@@ -167,7 +231,7 @@
     margin:8px 0 0;
     font-family:var(--display);
     font-weight:700;
-    font-size:clamp(1.02rem,2.6vw,1.3rem);
+    font-size:clamp(1.02rem,2.6vw,1.2rem);
     line-height:1.35;
   }
   .dates dd .day{
@@ -181,7 +245,7 @@
     letter-spacing:.06em;
   }
   .venue{
-    margin:clamp(18px,3.5vw,24px) auto 0;
+    margin:clamp(16px,3vw,20px) auto 0;
     padding-top:14px;
     border-top:1px solid var(--rule-faint);
     max-width:320px;
@@ -195,15 +259,16 @@
     margin-top:6px;
     font-family:var(--display);
     font-weight:700;
-    font-size:1.05rem;
-    letter-spacing:.24em;
+    font-size:1.02rem;
+    letter-spacing:.2em;
     color:var(--ink);
   }
 
+  /* ---------- side panels ---------- */
   .panels{
-    margin-top:clamp(24px,4.5vw,34px);
+    margin-top:22px;
     display:grid;
-    grid-template-columns:1fr 1fr;
+    grid-template-columns:1fr;
     gap:18px;
   }
   .panel{
@@ -230,8 +295,10 @@
   }
   .panel.telegram .stop{font-weight:700}
 
+  /* ---------- classifieds ---------- */
   .classifieds{
-    margin-top:clamp(24px,4.5vw,34px);
+    border-top:1px solid var(--rule);
+    padding-top:18px;
   }
   .classifieds h3{
     margin:0 0 16px;
@@ -273,12 +340,22 @@
     color:var(--ink-soft);
   }
 
+  /* ---------- phone ---------- */
+  @media (max-width:880px){
+    .page{
+      grid-template-columns:1fr;
+      grid-template-areas:"photo" "events" "left" "right";
+      grid-template-rows:auto;
+    }
+    .area-left,.area-right{border-left:0; border-right:0; border-top:1px solid var(--rule-faint); padding:22px 0 8px}
+    .area-photo{padding:22px 0 0}
+    .area-events{padding:0 0 22px}
+    .area-right{padding-bottom:22px}
+    .article p{text-align:left; hyphens:none}
+  }
   @media (max-width:520px){
-    .dates .grid{grid-template-columns:1fr; row-gap:20px}
-    .dates .event + .event{border-left:0; border-top:1px solid var(--rule-faint); padding-top:20px}
     .ads{grid-template-columns:1fr; gap:14px}
     .ads div + div{border-left:0; border-top:1px solid var(--rule-faint); padding-top:14px}
-    .panels{grid-template-columns:1fr}
   }
 </style>
 </head>
@@ -300,41 +377,71 @@
     <p class="eyebrow">Save the Date</p>
     <h2>Vrudhi &amp; Achal to&nbsp;Wed</h2>
     <p class="byline">From the correspondent of the Shah family</p>
-    <p class="deck">A lifetime subscription has now been mutually agreed upon.</p>
+    <p class="deck">Two hearts confirm a long-rumoured merger; celebrations ordered at Club O7 &mdash; guests are advised to prepare for unprecedented merriment.</p>
   </section>
 
-  <figure style="margin:0">
-    <div class="plate">
-      <div class="frame">
-        <img alt="Vrudhi &amp; Achal" onload="this.parentElement.classList.add('loaded')" onerror="this.style.display='none'" src="photo.jpg">
-        <span class="label">Photograph of<br>the Couple</span>
+  <div class="page">
+
+    <div class="area-left">
+      <article class="article">
+        <p class="kicker">The Happy Announcement</p>
+        <h3>Families Overjoyed as Couple Sets the Date</h3>
+        <div class="rule"></div>
+        <p class="lede">It is with great joy &mdash; and very little surprise to anyone who has ever seen them together &mdash; that the families of Vrudhi and Achal announce the wedding of the bride and groom, to be solemnised on Thursday, the 25th of February, 2027, at Club O7, Ahmedabad.</p>
+        <p>Festivities open a day earlier, on Wednesday the 24th, when both families gather for the pre-wedding celebrations: an evening expected to feature music, dancing, and at least one aunty or uncle who insists they &ldquo;knew it all.&rdquo;</p>
+        <p>Reporters pressed the couple for comment. The bride smiled. The groom grinned. Sources close to both confirm that a lifetime subscription has now been mutually agreed upon.</p>
+      </article>
+    </div>
+
+    <div class="area-photo">
+      <figure style="margin:0">
+        <div class="plate">
+          <div class="frame">
+            <img alt="Vrudhi &amp; Achal" onload="this.parentElement.classList.add('loaded')" onerror="this.style.display='none'" src="photo.jpg">
+            <span class="label">Photograph of<br>the Couple</span>
+          </div>
+        </div>
+        <figcaption class="caption">Vrudhi &amp; Achal &mdash; portrait awaited from the photographer, who promises it is well worth the wait.</figcaption>
+      </figure>
+    </div>
+
+    <div class="area-events">
+      <section class="dates">
+        <dl class="grid" style="margin:0">
+          <div class="event">
+            <dt>Pre-Wedding</dt>
+            <dd><span class="day">Wednesday</span>24 February 2027</dd>
+          </div>
+          <div class="event">
+            <dt>Wedding</dt>
+            <dd><span class="day">Thursday</span>25 February 2027</dd>
+          </div>
+        </dl>
+        <p class="venue">Venue<strong>Club O7, Ahmedabad</strong></p>
+      </section>
+    </div>
+
+    <div class="area-right">
+      <article class="article">
+        <p class="kicker">Venue Desk</p>
+        <h3>Club O7 Braces for Two Days of Festivities</h3>
+        <div class="rule"></div>
+        <p>Preparations are well underway across the city. Florists report record orders, tailors are working by lamplight, and the dance floor at Club O7 is said to be undergoing structural reinforcement in anticipation of the baraat.</p>
+        <p>Guests are advised to rest their feet, press their finest attire, and keep both evenings entirely free of other engagements. Officials confirm that no excuses will be entertained.</p>
+      </article>
+
+      <div class="panels">
+        <section class="panel">
+          <h3>The Wedding Forecast</h3>
+          <p>Hearts: full. A one-hundred per cent chance of blessings, fun, music, laughter and happy tears. Outlook: forever.</p>
+        </section>
+        <section class="panel telegram">
+          <h3>Telegram</h3>
+          <p>Save the dates <span class="stop">stop</span> formal invitation to follow <span class="stop">stop</span> bring your dancing shoes <span class="stop">stop</span></p>
+        </section>
       </div>
     </div>
-  </figure>
 
-  <section class="dates">
-    <dl class="grid" style="margin:0">
-      <div class="event">
-        <dt>Pre-Wedding</dt>
-        <dd><span class="day">Wednesday</span>24 February 2027</dd>
-      </div>
-      <div class="event">
-        <dt>Wedding</dt>
-        <dd><span class="day">Thursday</span>25 February 2027</dd>
-      </div>
-    </dl>
-    <p class="venue">Venue<strong>Club O7, Ahmedabad</strong></p>
-  </section>
-
-  <div class="panels">
-    <section class="panel">
-      <h3>The Wedding Forecast</h3>
-      <p>Hearts: full. A one-hundred per cent chance of blessings, fun, music, laughter and happy tears. Outlook: forever.</p>
-    </section>
-    <section class="panel telegram">
-      <h3>Telegram</h3>
-      <p>Save the dates <span class="stop">stop</span> formal invitation to follow <span class="stop">stop</span> bring your dancing shoes <span class="stop">stop</span></p>
-    </section>
   </div>
 
   <section class="classifieds">
