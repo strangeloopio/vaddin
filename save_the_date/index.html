@@ -80,7 +80,7 @@
   }
 
   /* Indic scripts dislike wide tracking — tighten it when those languages are active */
-  :root:is([data-lang="hi"],[data-lang="gu"],[data-lang="mr"]) :is(.invocation,.ears,.tagline,.dateline,.eyebrow,.byline,.article .kicker,.dates dt,.panel h3,.panel.telegram p,.classifieds h3,.ads b,.colophon,.plate .label){
+  :root:is([data-lang="hi"],[data-lang="gu"],[data-lang="mr"]) :is(.invocation,.ears,.tagline,.dateline,.eyebrow,.byline,.article .kicker,.dates dt,.panel h3,.classifieds h3,.ads b,.colophon,.plate .label){
     letter-spacing:.04em;
   }
 
@@ -205,17 +205,16 @@
   /* ---------- three-column page ---------- */
   .page{
     display:grid;
-    grid-template-columns:1fr 1.28fr 1fr;
+    grid-template-columns:1.05fr 1fr;
     grid-template-areas:
-      "left photo right"
-      "left events right";
+      "left photo"
+      "left events";
     grid-template-rows:auto 1fr;
     border-top:1px solid var(--rule);
   }
-  .area-left{grid-area:left; padding:24px 22px 24px 0; border-right:1px solid var(--rule-faint); min-width:0}
-  .area-photo{grid-area:photo; padding:24px 22px 8px; min-width:0}
-  .area-events{grid-area:events; padding:10px 22px 24px; min-width:0}
-  .area-right{grid-area:right; padding:24px 0 24px 22px; border-left:1px solid var(--rule-faint); min-width:0}
+  .area-left{grid-area:left; padding:24px 26px 24px 0; border-right:1px solid var(--rule-faint); min-width:0}
+  .area-photo{grid-area:photo; padding:24px 0 8px 26px; min-width:0}
+  .area-events{grid-area:events; padding:10px 0 24px 26px; min-width:0}
 
   .article .kicker{
     margin:0 0 8px;
@@ -342,13 +341,8 @@
     letter-spacing:.06em;
   }
   /* ---------- side panels ---------- */
-  .panels{
-    margin-top:22px;
-    display:grid;
-    grid-template-columns:1fr;
-    gap:18px;
-  }
   .panel{
+    margin-top:24px;
     border-top:3px double var(--rule);
     border-bottom:3px double var(--rule);
     padding:14px 12px 16px;
@@ -363,14 +357,6 @@
     text-transform:uppercase;
   }
   .panel p{margin:0; font-size:.92rem; line-height:1.6; font-style:italic}
-  .panel.telegram p{
-    font-style:normal;
-    font-size:.78rem;
-    letter-spacing:.14em;
-    text-transform:uppercase;
-    line-height:1.9;
-  }
-  .panel.telegram .stop{font-weight:700; color:var(--accent)}
 
   /* ---------- classifieds ---------- */
   .classifieds{
@@ -429,13 +415,12 @@
   @media (max-width:880px){
     .page{
       grid-template-columns:1fr;
-      grid-template-areas:"photo" "events" "left" "right";
+      grid-template-areas:"photo" "events" "left";
       grid-template-rows:auto;
     }
-    .area-left,.area-right{border-left:0; border-right:0; border-top:1px solid var(--rule-faint); padding:22px 0 8px}
+    .area-left{border-right:0; border-top:1px solid var(--rule-faint); padding:22px 0 22px}
     .area-photo{padding:22px 0 0}
     .area-events{padding:0 0 22px}
-    .area-right{padding-bottom:22px}
     .article p{text-align:left; hyphens:none}
   }
   @media (max-width:520px){
@@ -483,7 +468,7 @@
     <p class="eyebrow" data-i18n="eyebrow">Save the Date</p>
     <h2 data-i18n="headline">Vrudhi &amp; Achal to&nbsp;Wed</h2>
     <p class="byline" data-i18n="byline">From the correspondent of the Shah family</p>
-    <p class="deck" data-i18n="deck">Two hearts confirm a long-rumoured merger; grand celebrations ordered &mdash; guests are advised to prepare for unprecedented merriment.</p>
+    <p class="deck" data-i18n="deck">Two hearts confirm a merger; grand celebrations ordered &mdash; guests are advised to prepare for unprecedented merriment.</p>
   </section>
 
   <div class="page">
@@ -497,6 +482,11 @@
         <p data-i18n="a1P2">Festivities open a day earlier, on Wednesday the 24th, when both families gather for the pre-wedding celebrations: an evening expected to feature music, dancing, and at least one aunty or uncle who insists they &ldquo;knew it all.&rdquo;</p>
         <p data-i18n="a1P3">Reporters pressed the couple for comment. The bride smiled. The groom grinned. Sources close to both confirm that a lifetime subscription has now been mutually agreed upon.</p>
       </article>
+
+      <section class="panel">
+        <h3 data-i18n="fcH">The Wedding Forecast</h3>
+        <p data-i18n="fcP">Hearts: full. A one-hundred per cent chance of blessings, fun, music, laughter and happy tears. Outlook: forever.</p>
+      </section>
     </div>
 
     <div class="area-photo">
@@ -524,27 +514,6 @@
           </div>
         </dl>
       </section>
-    </div>
-
-    <div class="area-right">
-      <article class="article">
-        <p class="kicker" data-i18n="a2Kicker">City Desk</p>
-        <h3 data-i18n="a2Head">City Braces for Two Days of Festivities</h3>
-        <div class="rule"></div>
-        <p data-i18n="a2P1">Preparations are well underway across the city. Florists report record orders, tailors are working by lamplight, and the dance floor is said to be undergoing structural reinforcement in anticipation of the baraat.</p>
-        <p data-i18n="a2P2">Guests are advised to rest their feet, press their finest attire, and keep both evenings entirely free of other engagements. Officials confirm that no excuses will be entertained.</p>
-      </article>
-
-      <div class="panels">
-        <section class="panel">
-          <h3 data-i18n="fcH">The Wedding Forecast</h3>
-          <p data-i18n="fcP">Hearts: full. A one-hundred per cent chance of blessings, fun, music, laughter and happy tears. Outlook: forever.</p>
-        </section>
-        <section class="panel telegram">
-          <h3 data-i18n="tgH">Telegram</h3>
-          <p data-i18n="tgP">Save the dates <span class="stop">stop</span> formal invitation to follow <span class="stop">stop</span> bring your dancing shoes <span class="stop">stop</span></p>
-        </section>
-      </div>
     </div>
 
   </div>
@@ -583,7 +552,7 @@ const I18N = {
     eyebrow: 'Save the Date',
     headline: 'Vrudhi &amp; Achal to&nbsp;Wed',
     byline: 'From the correspondent of the Shah family',
-    deck: 'Two hearts confirm a long-rumoured merger; grand celebrations ordered — guests are advised to prepare for unprecedented merriment.',
+    deck: 'Two hearts confirm a merger; grand celebrations ordered — guests are advised to prepare for unprecedented merriment.',
     a1Kicker: 'The Happy Announcement',
     a1Head: 'Families Overjoyed as Couple Sets the Date',
     a1P1: 'It is with great joy that the families of Vrudhi and Achal announce the wedding of the bride and groom, to be solemnised on Thursday, the 25th of February, 2027.',
@@ -595,14 +564,8 @@ const I18N = {
     ev1Dd: '<span class="day">Wednesday</span>24 February 2027',
     ev2Dt: 'Wedding',
     ev2Dd: '<span class="day">Thursday</span>25 February 2027',
-    a2Kicker: 'City Desk',
-    a2Head: 'City Braces for Two Days of Festivities',
-    a2P1: 'Preparations are well underway across the city. Florists report record orders, tailors are working by lamplight, and the dance floor is said to be undergoing structural reinforcement in anticipation of the baraat.',
-    a2P2: 'Guests are advised to rest their feet, press their finest attire, and keep both evenings entirely free of other engagements. Officials confirm that no excuses will be entertained.',
     fcH: 'The Wedding Forecast',
     fcP: 'Hearts: full. A one-hundred per cent chance of blessings, fun, music, laughter and happy tears. Outlook: forever.',
-    tgH: 'Telegram',
-    tgP: 'Save the dates <span class="stop">stop</span> formal invitation to follow <span class="stop">stop</span> bring your dancing shoes <span class="stop">stop</span>',
     clH: 'Matrimonial Classifieds',
     ad1: '<b>Found</b>One groom, completely smitten. If lost, return to Vrudhi.',
     ad2: '<b>Wanted</b>Your presence for the blessings and fun. Apply in person, 24–25 February 2027.',
@@ -623,7 +586,7 @@ const I18N = {
     eyebrow: 'तारीख़ नोट कर लीजिए',
     headline: 'वृद्धि और अचल विवाह बंधन में',
     byline: 'शाह परिवार के संवाददाता द्वारा',
-    deck: 'दो दिलों ने बहुचर्चित मिलन की पुष्टि की; भव्य समारोह के आदेश — मेहमानों से अभूतपूर्व आनंद के लिए तैयार रहने का अनुरोध।',
+    deck: 'दो दिलों ने मिलन की पुष्टि की; भव्य समारोह के आदेश — मेहमानों से अभूतपूर्व आनंद के लिए तैयार रहने का अनुरोध।',
     a1Kicker: 'शुभ घोषणा',
     a1Head: 'तारीख़ तय, दोनों परिवारों में हर्ष की लहर',
     a1P1: 'अत्यंत हर्ष के साथ वृद्धि और अचल के परिवार वर-वधू के विवाह की घोषणा करते हैं, जो गुरुवार, 25 फ़रवरी 2027 को संपन्न होगा।',
@@ -635,14 +598,8 @@ const I18N = {
     ev1Dd: '<span class="day">बुधवार</span>24 फ़रवरी 2027',
     ev2Dt: 'विवाह',
     ev2Dd: '<span class="day">गुरुवार</span>25 फ़रवरी 2027',
-    a2Kicker: 'नगर समाचार',
-    a2Head: 'दो दिन के उत्सव के लिए शहर तैयार',
-    a2P1: 'शहर भर में तैयारियाँ ज़ोरों पर हैं। फूलवालों के पास रिकॉर्ड ऑर्डर हैं, दर्ज़ी देर रात तक काम कर रहे हैं, और कहा जाता है कि बारात के स्वागत में डांस फ्लोर मज़बूत किया जा रहा है।',
-    a2P2: 'मेहमानों से अनुरोध है कि पैरों को आराम दें, अपनी सबसे बढ़िया पोशाक तैयार रखें, और दोनों शामें पूरी तरह खाली रखें। अधिकारियों की पुष्टि: कोई बहाना स्वीकार नहीं किया जाएगा।',
     fcH: 'विवाह का पूर्वानुमान',
     fcP: 'दिल: लबालब। आशीर्वाद, मस्ती, संगीत, हँसी और ख़ुशी के आँसुओं की शत-प्रतिशत संभावना। आगे का हाल: हमेशा के लिए।',
-    tgH: 'तार',
-    tgP: 'तारीख़ें नोट करें <span class="stop">स्टॉप</span> औपचारिक निमंत्रण शीघ्र <span class="stop">स्टॉप</span> नाचने के जूते साथ लाएँ <span class="stop">स्टॉप</span>',
     clH: 'वैवाहिक विज्ञापन',
     ad1: '<b>मिला है</b>एक दूल्हा, पूरी तरह दिल हार चुका। खोया मिले तो वृद्धि को लौटाएँ।',
     ad2: '<b>आवश्यकता है</b>आशीर्वाद और मौज-मस्ती के लिए आपकी उपस्थिति की। 24–25 फ़रवरी 2027 को स्वयं पधारें।',
@@ -663,7 +620,7 @@ const I18N = {
     eyebrow: 'તારીખ નોંધી લેજો',
     headline: 'વૃદ્ધિ અને અચલ લગ્નબંધનમાં',
     byline: 'શાહ પરિવારના સંવાદદાતા તરફથી',
-    deck: 'બે દિલોએ લાંબા સમયથી ચર્ચાતા મિલનની પુષ્ટિ કરી; ભવ્ય ઉજવણીના આદેશ — મહેમાનોને અભૂતપૂર્વ આનંદ માટે તૈયાર રહેવા વિનંતી.',
+    deck: 'બે દિલોએ મિલનની પુષ્ટિ કરી; ભવ્ય ઉજવણીના આદેશ — મહેમાનોને અભૂતપૂર્વ આનંદ માટે તૈયાર રહેવા વિનંતી.',
     a1Kicker: 'શુભ જાહેરાત',
     a1Head: 'તારીખ નક્કી, બંને પરિવારોમાં આનંદની લહેર',
     a1P1: 'અત્યંત આનંદ સાથે વૃદ્ધિ અને અચલના પરિવારો વર-વધૂનાં લગ્નની જાહેરાત કરે છે, જે ગુરુવાર, 25 ફેબ્રુઆરી 2027ના રોજ યોજાશે.',
@@ -675,14 +632,8 @@ const I18N = {
     ev1Dd: '<span class="day">બુધવાર</span>24 ફેબ્રુઆરી 2027',
     ev2Dt: 'લગ્ન',
     ev2Dd: '<span class="day">ગુરુવાર</span>25 ફેબ્રુઆરી 2027',
-    a2Kicker: 'નગર સમાચાર',
-    a2Head: 'બે દિવસની ઉજવણી માટે શહેર સજ્જ',
-    a2P1: 'શહેરભરમાં તૈયારીઓ પુરજોશમાં ચાલી રહી છે. ફૂલવાળાઓ પાસે રેકોર્ડ ઓર્ડર છે, દરજીઓ મોડી રાત સુધી કામ કરી રહ્યા છે, અને કહેવાય છે કે જાનના સ્વાગત માટે ડાન્સ ફ્લોર મજબૂત કરાઈ રહ્યો છે.',
-    a2P2: 'મહેમાનોને વિનંતી છે કે પગને આરામ આપે, પોતાનો શ્રેષ્ઠ પોશાક તૈયાર રાખે, અને બંને સાંજ સંપૂર્ણ ખાલી રાખે. અધિકારીઓની પુષ્ટિ: કોઈ બહાનું ચલાવી લેવાશે નહીં.',
     fcH: 'લગ્નની આગાહી',
     fcP: 'દિલ: છલોછલ. આશીર્વાદ, મોજ-મસ્તી, સંગીત, હાસ્ય અને ખુશીનાં આંસુની સો ટકા શક્યતા. ભવિષ્ય: કાયમ માટે.',
-    tgH: 'તાર',
-    tgP: 'તારીખો નોંધી લો <span class="stop">સ્ટોપ</span> ઔપચારિક આમંત્રણ ટૂંકમાં <span class="stop">સ્ટોપ</span> નાચવાના શૂઝ સાથે લાવજો <span class="stop">સ્ટોપ</span>',
     clH: 'લગ્નવિષયક જાહેરાતો',
     ad1: '<b>મળ્યો છે</b>એક વરરાજા, સંપૂર્ણ દિલ હારી ચૂકેલો. ખોવાયેલો મળે તો વૃદ્ધિને પરત કરવો.',
     ad2: '<b>જોઈએ છે</b>આશીર્વાદ અને મોજમસ્તી માટે આપની હાજરી. 24–25 ફેબ્રુઆરી 2027ના રોજ રૂબરૂ પધારશો.',
@@ -703,7 +654,7 @@ const I18N = {
     eyebrow: 'तारीख नोंदवून ठेवा',
     headline: 'वृद्धी आणि अचल विवाहबद्ध होणार',
     byline: 'शाह कुटुंबाच्या वार्ताहराकडून',
-    deck: 'दोन हृदयांनी बहुचर्चित मीलनावर शिक्कामोर्तब केले; भव्य सोहळ्याचे आदेश — पाहुण्यांनी अभूतपूर्व आनंदासाठी तयार राहावे.',
+    deck: 'दोन हृदयांनी मीलनावर शिक्कामोर्तब केले; भव्य सोहळ्याचे आदेश — पाहुण्यांनी अभूतपूर्व आनंदासाठी तयार राहावे.',
     a1Kicker: 'शुभ घोषणा',
     a1Head: 'तारीख ठरली, दोन्ही कुटुंबांत आनंदाची लाट',
     a1P1: 'अत्यंत आनंदाने वृद्धी आणि अचल यांचे कुटुंबीय वधू-वरांच्या विवाहाची घोषणा करत आहेत; हा विवाह गुरुवार, 25 फेब्रुवारी 2027 रोजी संपन्न होईल.',
@@ -715,14 +666,8 @@ const I18N = {
     ev1Dd: '<span class="day">बुधवार</span>24 फेब्रुवारी 2027',
     ev2Dt: 'विवाह',
     ev2Dd: '<span class="day">गुरुवार</span>25 फेब्रुवारी 2027',
-    a2Kicker: 'नगर वृत्त',
-    a2Head: 'दोन दिवसांच्या सोहळ्यासाठी शहर सज्ज',
-    a2P1: 'शहरभर तयारी जोरात सुरू आहे. फुलवाल्यांकडे विक्रमी ऑर्डर आहेत, शिंपी रात्री उशिरापर्यंत काम करत आहेत, आणि वरातीच्या स्वागतासाठी डान्स फ्लोर मजबूत केला जात असल्याचे म्हटले जाते.',
-    a2P2: 'पाहुण्यांनी पायांना विश्रांती द्यावी, आपला उत्तम पोशाख तयार ठेवावा, आणि दोन्ही संध्याकाळ पूर्णपणे मोकळ्या ठेवाव्यात. अधिकाऱ्यांची पुष्टी: कोणतीही सबब चालणार नाही.',
     fcH: 'विवाहाचा अंदाज',
     fcP: 'हृदये: काठोकाठ. आशीर्वाद, धमाल, संगीत, हास्य आणि आनंदाश्रूंची शंभर टक्के शक्यता. भविष्य: कायमचे.',
-    tgH: 'तार',
-    tgP: 'तारखा नोंदवा <span class="stop">स्टॉप</span> औपचारिक निमंत्रण लवकरच <span class="stop">स्टॉप</span> नाचण्याचे बूट घेऊन या <span class="stop">स्टॉप</span>',
     clH: 'वैवाहिक जाहिराती',
     ad1: '<b>सापडला आहे</b>एक नवरदेव, पुरता प्रेमात पडलेला. हरवलेला आढळल्यास वृद्धीकडे परत करावा.',
     ad2: '<b>पाहिजे</b>आशीर्वाद आणि धमाल यासाठी आपली उपस्थिती. 24–25 फेब्रुवारी 2027 रोजी स्वतः यावे.',
