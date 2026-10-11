@@ -370,11 +370,12 @@
 
   /* ---------- classifieds ---------- */
   .classifieds{
+    margin-top:24px;
     border-top:1px solid var(--rule);
-    padding-top:18px;
+    padding-top:16px;
   }
   .classifieds h3{
-    margin:0 0 16px;
+    margin:0 0 14px;
     font-family:var(--display);
     font-weight:700;
     font-size:.82rem;
@@ -383,8 +384,8 @@
   }
   .ads{
     display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:0 22px;
+    grid-template-columns:1fr;
+    gap:14px;
     text-align:center;
   }
   .ads div{
@@ -393,7 +394,7 @@
     padding-inline:4px;
     min-width:0;
   }
-  .ads div + div{border-left:1px solid var(--rule-faint)}
+  .ads div + div{border-top:1px solid var(--rule-faint); padding-top:14px}
   .ads b{
     display:block;
     font-family:var(--display);
@@ -406,7 +407,9 @@
   }
 
   .colophon{
-    margin:clamp(20px,4vw,30px) 0 0;
+    margin:0;
+    border-top:1px solid var(--rule);
+    padding-top:14px;
     display:flex; justify-content:center; align-items:baseline; flex-wrap:wrap;
     column-gap:14px; row-gap:4px;
     font-size:.7rem;
@@ -435,8 +438,6 @@
   }
   @media (max-width:520px){
     .ears{flex-direction:column; align-items:center; gap:3px}
-    .ads{grid-template-columns:1fr; gap:14px}
-    .ads div + div{border-left:0; border-top:1px solid var(--rule-faint); padding-top:14px}
   }
 </style>
 </head>
@@ -497,6 +498,15 @@
         <h3 data-i18n="fcH">The Wedding Forecast</h3>
         <p data-i18n="fcP">Hearts: full. A one-hundred per cent chance of blessings, fun, music, laughter and happy tears. Outlook: forever.</p>
       </section>
+
+      <section class="classifieds">
+        <h3 data-i18n="clH">Matrimonial Classifieds</h3>
+        <div class="ads">
+          <div data-i18n="ad1"><b>Found</b>One groom, completely smitten. If lost, return to Vrudhi.</div>
+          <div data-i18n="ad2"><b>Wanted</b>Your presence for the blessings and fun. Apply in person, 24&ndash;25 February 2027.</div>
+          <div data-i18n="ad3"><b>For Sale</b>Excuses for missing this wedding. Condition: unused. Offers: not accepted.</div>
+        </div>
+      </section>
     </div>
 
     <div class="area-photo">
@@ -528,15 +538,6 @@
     </div>
 
   </div>
-
-  <section class="classifieds">
-    <h3 data-i18n="clH">Matrimonial Classifieds</h3>
-    <div class="ads">
-      <div data-i18n="ad1"><b>Found</b>One groom, completely smitten. If lost, return to Vrudhi.</div>
-      <div data-i18n="ad2"><b>Wanted</b>Your presence for the blessings and fun. Apply in person, 24&ndash;25 February 2027.</div>
-      <div data-i18n="ad3"><b>For Sale</b>Excuses for missing this wedding. Condition: unused. Offers: not accepted.</div>
-    </div>
-  </section>
 
   <footer class="colophon">
     <span data-i18n="col1">The VAddin Times</span>
