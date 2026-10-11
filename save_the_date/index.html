@@ -80,7 +80,7 @@
   }
 
   /* Indic scripts dislike wide tracking — tighten it when those languages are active */
-  :root:is([data-lang="hi"],[data-lang="gu"],[data-lang="mr"]) :is(.invocation,.ears,.tagline,.dateline,.eyebrow,.byline,.article .kicker,.dates dt,.panel h3,.classifieds h3,.ads b,.colophon,.plate .label){
+  :root:is([data-lang="hi"],[data-lang="gu"],[data-lang="mr"]) :is(.invocation,.ears,.tagline,.dateline,.eyebrow,.byline,.article .kicker,.dates dt,.dates .follow,.panel h3,.classifieds h3,.ads b,.colophon,.plate .label){
     letter-spacing:.04em;
   }
 
@@ -315,6 +315,16 @@
     row-gap:18px;
   }
   .dates .event + .event{border-top:1px solid var(--rule-faint); padding-top:18px}
+  .dates .follow{
+    margin:18px auto 0;
+    padding-top:14px;
+    border-top:1px solid var(--rule-faint);
+    max-width:340px;
+    font-size:.72rem;
+    letter-spacing:.26em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+  }
   .dates .event{padding-inline:14px; min-width:0}
   .dates dt{
     font-size:.72rem;
@@ -513,6 +523,7 @@
             <dd data-i18n="ev2Dd"><span class="day">Thursday</span>25 February 2027</dd>
           </div>
         </dl>
+        <p class="follow" data-i18n="follow">Formal invitation to follow</p>
       </section>
     </div>
 
@@ -564,6 +575,7 @@ const I18N = {
     ev1Dd: '<span class="day">Wednesday</span>24 February 2027',
     ev2Dt: 'Wedding',
     ev2Dd: '<span class="day">Thursday</span>25 February 2027',
+    follow: 'Formal invitation to follow',
     fcH: 'The Wedding Forecast',
     fcP: 'Hearts: full. A one-hundred per cent chance of blessings, fun, music, laughter and happy tears. Outlook: forever.',
     clH: 'Matrimonial Classifieds',
@@ -598,6 +610,7 @@ const I18N = {
     ev1Dd: '<span class="day">बुधवार</span>24 फ़रवरी 2027',
     ev2Dt: 'विवाह',
     ev2Dd: '<span class="day">गुरुवार</span>25 फ़रवरी 2027',
+    follow: 'औपचारिक निमंत्रण शीघ्र ही',
     fcH: 'विवाह का पूर्वानुमान',
     fcP: 'दिल: लबालब। आशीर्वाद, मस्ती, संगीत, हँसी और ख़ुशी के आँसुओं की शत-प्रतिशत संभावना। आगे का हाल: हमेशा के लिए।',
     clH: 'वैवाहिक विज्ञापन',
@@ -632,6 +645,7 @@ const I18N = {
     ev1Dd: '<span class="day">બુધવાર</span>24 ફેબ્રુઆરી 2027',
     ev2Dt: 'લગ્ન',
     ev2Dd: '<span class="day">ગુરુવાર</span>25 ફેબ્રુઆરી 2027',
+    follow: 'ઔપચારિક આમંત્રણ ટૂંક સમયમાં',
     fcH: 'લગ્નની આગાહી',
     fcP: 'દિલ: છલોછલ. આશીર્વાદ, મોજ-મસ્તી, સંગીત, હાસ્ય અને ખુશીનાં આંસુની સો ટકા શક્યતા. ભવિષ્ય: કાયમ માટે.',
     clH: 'લગ્નવિષયક જાહેરાતો',
@@ -666,6 +680,7 @@ const I18N = {
     ev1Dd: '<span class="day">बुधवार</span>24 फेब्रुवारी 2027',
     ev2Dt: 'विवाह',
     ev2Dd: '<span class="day">गुरुवार</span>25 फेब्रुवारी 2027',
+    follow: 'औपचारिक निमंत्रण लवकरच',
     fcH: 'विवाहाचा अंदाज',
     fcP: 'हृदये: काठोकाठ. आशीर्वाद, धमाल, संगीत, हास्य आणि आनंदाश्रूंची शंभर टक्के शक्यता. भविष्य: कायमचे.',
     clH: 'वैवाहिक जाहिराती',
